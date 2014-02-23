@@ -1,37 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+	<LinearLayout 
+	    android:layout_gravity="center"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
     
  	<EditText 	    
+ 	    android:layout_gravity="center"
  	    android:id="@+id/nameAct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Nombre Actividad"
+        android:hint="@string/nombreNuevaActividad"
     />
  	
  	<EditText
+ 	    android:layout_gravity="center"
  	    android:id="@+id/descAct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Descripcion"
+        android:hint="@string/descripcionNuevaActividad"
+        android:inputType="textMultiLine"
     />
  	
- 	<CheckBox android:text="Incluir Imagen"
-			   
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content"></CheckBox>
+ 	<LinearLayout
+ 	    android:layout_gravity="center"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal">
+	    
+ 		<Button
+ 		    android:textColor="@color/gris"
+ 		    android:background="@color/azul"
+	 	    android:id="@+id/bImagen"
+	 	    android:text="@string/bagregarImg"
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"
+	 	    android:onClick="addimagen"/>
+ 		
+ 		<TextView
+ 		    android:layout_gravity="center_vertical|right" 
+ 		    android:gravity="right"
+ 		    android:text=""
+ 		    android:id="@+id/texImagen"	 	    
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+ 	    
+ 	</LinearLayout>
  	
- 	<CheckBox android:text="Incluir Video"
-			   
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content"></CheckBox>
+ 	<LinearLayout
+ 	    android:layout_gravity="center"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal">
+	    
+ 		<Button
+ 		    android:textColor="@color/gris"
+ 		    android:background="@color/azul"
+	 	    android:id="@+id/bVideo"
+	 	    android:text="@string/bagregarVid"
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"
+	 	    android:onClick="addvideo"/>
+ 		
+ 		<TextView
+ 		    android:layout_gravity="center_vertical|right" 
+ 		    android:gravity="right"
+ 		    android:text=""
+ 		    android:id="@+id/texVideo"	 	    
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+ 	    
+ 	</LinearLayout>
+ 	
+ 	<LinearLayout
+ 	    android:layout_gravity="center"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="horizontal">
+	    
+ 		<Button
+ 		    android:textColor="@color/gris"
+ 		    android:background="@color/azul"
+	 	    android:id="@+id/bAudio"
+	 	    android:text="@string/bagregarAud"
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"
+	 	    android:onClick="addaudio"/>
+ 		
+ 		<TextView
+ 		    android:layout_gravity="center_vertical|right" 
+ 		    android:gravity="right"
+ 		    android:text=""
+ 		    android:id="@+id/texAudio"	 	    
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+ 	    
+ 	</LinearLayout>
+ 	
+ 	
  	<Button 
  	    android:id="@+id/Agregar"
  	    android:text="Agregar Actividad"
  	    android:onClick="agregar"
  	      android:layout_width="wrap_content" 
 		  android:layout_height="wrap_content"/> 	
+		  
+ 	
+
+ 	 	
+ 	<ImageView
+	android:id="@+id/galeria"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" 	    
+ 	/>	
+ 	
 
 </LinearLayout>
+</ScrollView>

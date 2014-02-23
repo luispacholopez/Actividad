@@ -2,27 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_vertical"
     android:orientation="vertical" >
     
     <EditText
+        android:layout_gravity="center"
         android:id="@+id/eUsuario"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/Usuario"
         />
-    <EditText 
+    
+    <EditText
+        android:layout_gravity="center"
         android:id="@+id/ePassword"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/Pass"
         android:inputType="textPassword"
-        />
+        />    
 
     <Button
-        android:id="@+id/bAcceso"
+        android:textColor="#ffffff"
+       	android:background="@drawable/botones"
+        android:id="@+id/bAcceso"      
+         
+        android:layout_gravity="center"        
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
+        android:layout_height="wrap_content"        
         android:onClick="acceso"
         android:text="@string/Access" />
 
