@@ -22,14 +22,16 @@
         android:hint="@string/Pass"
         android:inputType="textPassword"
         />    
-
+<TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <Button
-        android:textColor="#ffffff"
+        android:textColor="@color/gris"
        	android:background="@drawable/botones"
         android:id="@+id/bAcceso"      
          
         android:layout_gravity="center"        
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"        
         android:onClick="acceso"
         android:text="@string/Access" />

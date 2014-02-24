@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +27,12 @@ public class NuevaActividad extends Activity{
 	
 	SQLiteDatabase db;
 	static String nameDB="apli";
+	String path="mnt/extsd/dataapp/";
 	
 	EditText nombre, descripcion;	
 	TextView addimg,addvid,addaud;	
 	Button adjimg,adjvid,adjaud,ag;	
-	ImageView contenedor;
-	
+		
 	boolean flagi=false, flagv=false,flaga=false;	
 	String oimg="",ovid="",oaud="";
 	String dimg="",dvid="",daud="";
@@ -48,6 +49,7 @@ public class NuevaActividad extends Activity{
 		// TODO Auto-generated method stubt
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nuevaactividad);
+		
 		nombre = (EditText) this.findViewById(R.id.nameAct);
 		descripcion = (EditText) this.findViewById(R.id.descAct);
 		
@@ -59,11 +61,12 @@ public class NuevaActividad extends Activity{
 		adjvid = (Button) this.findViewById(R.id.bVideo);
 		adjaud = (Button) this.findViewById(R.id.bAudio);
 		
-		ag = (Button) this.findViewById(R.id.Agregar);
-		contenedor = (ImageView) this.findViewById(R.id.galeria);
-		Intent newA = this.getIntent();		
-		
+		ag = (Button) this.findViewById(R.id.Agregar);		
+		Intent newA = this.getIntent();
+		path = "mnt/extsd/dataapp";
+		//path = Environment.getExternalStorageState();
 	}
+
 	private void abrirBasedatos() 
 
 	  {   
@@ -124,8 +127,7 @@ public class NuevaActividad extends Activity{
 	    Intent c = Intent.createChooser(i, "Seleccione Audio");
 	    startActivityForResult(c,1);
 	}
-	
-		
+			
 	public void agregar (View v){
 		String n = nombre.getEditableText().toString();		
 		String d = descripcion.getEditableText().toString();		

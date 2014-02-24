@@ -7,34 +7,28 @@
 
 	<LinearLayout 
 	    android:layout_gravity="center"
+	    android:gravity="center"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="wrap_content"
 	    android:orientation="vertical" >
     
- 	<EditText 	    
- 	    android:layout_gravity="center"
- 	    android:id="@+id/nameAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/nombreNuevaActividad"
-    />
+	 	<EditText 	    
+	 	    android:layout_gravity="center"
+	 	    android:id="@+id/nameAct"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/nombreNuevaActividad"/>
  	
- 	<EditText
- 	    android:layout_gravity="center"
- 	    android:id="@+id/descAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/descripcionNuevaActividad"
-        android:inputType="textMultiLine"
-    />
- 	
- 	<LinearLayout
- 	    android:layout_gravity="center"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:orientation="horizontal">
+	 	<EditText
+	 	    android:layout_gravity="center"
+	 	    android:id="@+id/descAct"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/descripcionNuevaActividad"
+	        android:inputType="textMultiLine"/>
 	    
  		<Button
+ 		    android:layout_gravity="center"
  		    android:textColor="@color/gris"
  		    android:background="@color/azul"
 	 	    android:id="@+id/bImagen"
@@ -44,22 +38,14 @@
 	 	    android:onClick="addimagen"/>
  		
  		<TextView
- 		    android:layout_gravity="center_vertical|right" 
- 		    android:gravity="right"
+ 		    android:layout_gravity="center"
  		    android:text=""
  		    android:id="@+id/texImagen"	 	    
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
- 	    
- 	</LinearLayout>
- 	
- 	<LinearLayout
- 	    android:layout_gravity="center"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:orientation="horizontal">
-	    
+ 		    
  		<Button
+ 		    android:layout_gravity="center"
  		    android:textColor="@color/gris"
  		    android:background="@color/azul"
 	 	    android:id="@+id/bVideo"
@@ -69,22 +55,14 @@
 	 	    android:onClick="addvideo"/>
  		
  		<TextView
- 		    android:layout_gravity="center_vertical|right" 
- 		    android:gravity="right"
+ 		    android:layout_gravity="center"
  		    android:text=""
  		    android:id="@+id/texVideo"	 	    
 	 	    android:layout_width="wrap_content"
-	 	    android:layout_height="wrap_content"/>
- 	    
- 	</LinearLayout>
- 	
- 	<LinearLayout
- 	    android:layout_gravity="center"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:orientation="horizontal">
-	    
+	 	    android:layout_height="wrap_content"/> 	    
+ 		    
  		<Button
+ 		    android:layout_gravity="center"
  		    android:textColor="@color/gris"
  		    android:background="@color/azul"
 	 	    android:id="@+id/bAudio"
@@ -94,32 +72,26 @@
 	 	    android:onClick="addaudio"/>
  		
  		<TextView
- 		    android:layout_gravity="center_vertical|right" 
- 		    android:gravity="right"
+ 		    android:layout_gravity="center"
  		    android:text=""
  		    android:id="@+id/texAudio"	 	    
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
- 	    
- 	</LinearLayout>
- 	
- 	
- 	<Button 
- 	    android:id="@+id/Agregar"
- 	    android:text="Agregar Actividad"
- 	    android:onClick="agregar"
- 	      android:layout_width="wrap_content" 
-		  android:layout_height="wrap_content"/> 	
-		  
- 	
-
- 	 	
- 	<ImageView
-	android:id="@+id/galeria"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" 	    
- 	/>	
- 	
-
+ 		
+	 	<TextView
+ 		    android:text="" 		    
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+	 	
+ 		<Button 
+	 	    android:layout_gravity="center"
+	 	    android:textColor="@color/gris"
+	 	    android:background="@color/azul"
+	 	    android:id="@+id/Agregar"
+	 	    android:text="Agregar Actividad"
+	 	    android:onClick="agregar"
+	 	    android:layout_width="match_parent" 
+			android:layout_height="wrap_content"/>
+ 		
 </LinearLayout>
 </ScrollView>

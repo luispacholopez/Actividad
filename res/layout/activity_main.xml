@@ -13,7 +13,7 @@
 
     <TextView
         android:textStyle="bold"
-        android:textColor="@color/azul"
+        android:textColor="@color/gris"
         android:gravity="center"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
     	android:orientation="horizontal">
         
         <ImageView 
-            android:layout_gravity="left"
+            android:layout_gravity="left"            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_launcher"/>
@@ -39,21 +39,24 @@
     </LinearLayout>
     
     <Button
-        android:textColor="#ffffff"
+        android:textColor="@color/gris"
         android:layout_gravity="center"
         android:background="@drawable/botones"
         android:id="@+id/bAdministrador"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Administrador"
         android:onClick="onAdministrador"        
         />
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <Button
-        android:textColor="#ffffff"
+        android:textColor="@color/gris"
         android:layout_gravity="center"
         android:background="@drawable/botones"
         android:id="@+id/bEstudiante"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Estudiante"
         android:onClick="onEstudiante"        
