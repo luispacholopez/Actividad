@@ -26,6 +26,7 @@ import android.widget.Toast;
 public class NuevaActividad extends Activity{
 	
 	SQLiteDatabase db;
+	String DATABASE_PATH = "mnt/extsd/dataapp";
 	static String nameDB="apli";
 	String path="mnt/extsd/dataapp/";
 	
@@ -64,7 +65,7 @@ public class NuevaActividad extends Activity{
 		ag = (Button) this.findViewById(R.id.Agregar);		
 		Intent newA = this.getIntent();
 		path = "mnt/extsd/dataapp";
-		//path = Environment.getExternalStorageState();
+		//path = Environment.getExternalStorageDirectory().toString();
 	}
 
 	private void abrirBasedatos() 
@@ -72,7 +73,8 @@ public class NuevaActividad extends Activity{
 	  {   
 	    try 
 	    {   
-	      db = openOrCreateDatabase(nameDB, MODE_WORLD_WRITEABLE, null);   
+	    	db = openOrCreateDatabase("/mnt/extsd/dataapp/"+"DB", MODE_PRIVATE, null);
+	      
 	      db.execSQL(crearAct);	       
 	    }    
 	    catch (Exception e)
@@ -99,7 +101,7 @@ public class NuevaActividad extends Activity{
 
 		flagi = true;
 		flagv = false;
-		flaga = false;		
+		flaga = false;
 		Intent i = new Intent(Intent.ACTION_GET_CONTENT);
 	    i.setType("image/*");
 	    Intent c = Intent.createChooser(i, "Seleccione Imagen");

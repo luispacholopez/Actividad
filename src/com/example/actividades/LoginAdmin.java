@@ -31,6 +31,7 @@ public class LoginAdmin extends Activity {
 		db.execSQL(crearUsuario);
 		db.execSQL("insert into Usuarios(usuario,password) values ('admin','admin')");		
 		Cursor consulta = db.rawQuery("select * from Usuarios", null);
+		db.close();
 		
 		
 	}
@@ -48,7 +49,7 @@ public class LoginAdmin extends Activity {
 			}			
 			else {
 				Toast aviso;
-		    	aviso = Toast.makeText(this,"Pass Erronea",1000);			    	
+		    	aviso = Toast.makeText(this,"Contraseña Erronea",1000);			    	
 		    	aviso.show();
 			}
 					
@@ -62,28 +63,3 @@ public class LoginAdmin extends Activity {
 
 
 
-
-//Cursor consulta = db.rawQuery("select * from Usuarios", null);
-//while(consulta.moveToNext() == true){
-//	
-//	String u = user.getText().toString();
-//	String p = pass.getText().toString();
-//	boolean flag = false;
-//	if(consulta.getString(1) == u){
-//		 flag = true; 
-//		if(consulta.getString(2) == p){
-//			Intent newActividad;
-//			newActividad = new Intent(this,NuevaActividad.class);
-//			this.startActivityForResult(newActividad, 0);					
-//		}
-//		else{
-//	    	Toast aviso;
-//	    	aviso = Toast.makeText(this,"La contraseña no corresponde con el Usuario",2000);			    	
-//	    	aviso.show();			    	
-//	    	//terminar intent
-//	    	//this.finish();
-//		}
-//	}
-//}
-//
-//db.close();
