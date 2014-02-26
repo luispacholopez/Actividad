@@ -1,5 +1,7 @@
 package com.example.actividades;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 
 public class Main extends Activity {	
     boolean flagi=false,flagv=false,flaga=false;
+    ArrayList<Uri> uris =new ArrayList<Uri>();    
     Uri imageuri,videouri,audiouri;
     EditText etEmail, etSubject, etBody;    
     CheckBox chkAttachment,chkAttachment2,chkAttachment3;
@@ -45,18 +48,22 @@ public class Main extends Activity {
         itSend.putExtra(android.content.Intent.EXTRA_TEXT, etBody.getText());
                 
         if (chkAttachment.isChecked()) {        	
-        	itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(imageuri.toString()));
+        	//itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(imageuri.toString()));
+        	uris.add(Uri.parse(imageuri.toString()));
         	itSend.setType("image/jpg");                            	
         }                        
         if (chkAttachment2.isChecked()){
-        	itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(videouri.toString()));
+        	//itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(videouri.toString()));
+        	uris.add(Uri.parse(videouri.toString()));
         	itSend.setType("video/mp4");
         }
         if (chkAttachment3.isChecked()){
-        	itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(audiouri.toString()));
+        	//itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(audiouri.toString()));
+        	uris.add(Uri.parse(audiouri.toString()));
         	itSend.setType("audio/mp3");
         }
                 /* iniciamos la actividad */
+//        itSend.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
           startActivity(itSend);
 
 	}
