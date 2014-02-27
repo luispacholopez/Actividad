@@ -9,13 +9,10 @@
 				  android:layout_width="wrap_content" 
 				  android:layout_height="wrap_content"
  				  android:orientation="horizontal">
-		<TextView android:text="Destinatario"
-				  android:layout_width="wrap_content" 
-				  android:layout_height="wrap_content" 
-				  android:id="@+id/txtForEmail"></TextView>
 		<EditText android:layout_width="wrap_content"
 				  android:layout_height="wrap_content" 
 				  android:width="170dip" 
+				  android:hint="Destinatario"
 				  android:inputType="textEmailAddress"				  
 				  android:id="@+id/etEmail">
 		</EditText>
@@ -24,13 +21,11 @@
  				  android:layout_width="wrap_content" 
  				  android:layout_height="wrap_content"
  				  android:orientation="horizontal">
-		<TextView android:text="Asunto" 
-				  android:layout_width="wrap_content"
-				  android:layout_height="wrap_content"
-				  android:id="@+id/txtForSubject"></TextView>
+		
 		<EditText android:layout_width="wrap_content"
 				  android:layout_height="wrap_content" 
 				  android:width="170dip" 
+				  android:hint="Asunto"
 				  android:id="@+id/etSubject">
 		</EditText>
 	</LinearLayout>
@@ -38,55 +33,27 @@
  				  android:layout_width="wrap_content" 
  				  android:layout_height="wrap_content"
  				  android:orientation="horizontal">
-		<TextView android:text="Mensaje"
-			      android:layout_width="wrap_content" 
-			      android:layout_height="wrap_content"
-			       android:id="@+id/txtForBody"></TextView>
+		
 		<EditText android:layout_width="wrap_content"
  			  android:layout_height="wrap_content" 
  			  android:lines="5" 
+ 			  android:hint="Mensaje"
  			  android:width="300dip"
 			  android:id="@+id/etBody">
 		</EditText>
 	</LinearLayout>
-	<CheckBox android:text="Enviar Imagen adjunta" 
-			  android:id="@+id/chkAttachment" 
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content"></CheckBox>
-	<Button 
-	    android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:id="@+id/addImagen"
-		android:text="Agregar Imagen"
-		android:onClick="addImagen"
-	    />
-	<CheckBox android:text="Enviar Video adjunto" 
-			  android:id="@+id/chkAttachmentvid" 
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content"></CheckBox>
-	<Button 
-	    android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:id="@+id/addVideo"
-		android:text="Agregar Video"
-		android:onClick="addVideo"
-	    />
-	<CheckBox android:text="Enviar Audio adjunto" 
-			  android:id="@+id/chkAttachmentaud" 
-			  android:layout_width="wrap_content" 
-			  android:layout_height="wrap_content"></CheckBox>
-	<Button 
-	    android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:id="@+id/addAudio"
-		android:text="Agregar Audio"
-		android:onClick="addAudio"
-	    />
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:id="@+id/btnAdj"
+			android:text="Adjuntar"			
+			android:onClick="adjuntar"
+			android:width="150dip">
+	</Button>
 	<Button android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
 			android:id="@+id/btnSend"
 			android:text="Enviar"			
-			android:onClick="metodo"
+			android:onClick="enviar"
 			android:width="150dip">
 	</Button>
 </LinearLayout>

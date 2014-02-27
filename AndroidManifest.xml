@@ -32,25 +32,25 @@
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
             android:name="com.example.actividades.BancoActividades"
-            android:label="Banco" >
+            android:label="Banco de Actividades" >
         </activity>
         <activity            
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
-            android:name="com.example.actividades.NuevaActividad"
-            android:label="newACt" >
+            android:name="com.example.actividades.NuevaActividad"            
+            android:label="Nueva Actividad" >
         </activity>
         <activity            
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
             android:name="com.example.actividades.Estudiante"
-            android:label="Vista" >
+            android:label="Estudiante" >
         </activity>
         <activity            
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
             android:name="com.example.actividades.Main"
-            android:label="Enviar" >
+            android:label="Envio de Datos" >
         </activity>
     </application>
 

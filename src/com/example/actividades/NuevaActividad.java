@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,9 +28,12 @@ import android.widget.Toast;
 public class NuevaActividad extends Activity{
 	
 	SQLiteDatabase db;
-	String DATABASE_PATH = "mnt/extsd/dataapp";
+	String fuente = "dataapp/";
+	//String DATABASE_PATH = "/mnt/extsd/"+fuente+"/";
+	String DATABASE_PATH = Environment.getExternalStorageDirectory().toString()+"/"+fuente;
 	static String nameDB="apli";
-	String path="mnt/extsd/dataapp/";
+	//String path="mnt/extsd/"+fuente+"/";
+	String path = Environment.getExternalStorageDirectory().toString()+"/"+fuente;
 	
 	EditText nombre, descripcion;	
 	TextView addimg,addvid,addaud;	
@@ -37,6 +42,7 @@ public class NuevaActividad extends Activity{
 	boolean flagi=false, flagv=false,flaga=false;	
 	String oimg="",ovid="",oaud="";
 	String dimg="",dvid="",daud="";
+	
 	
 	private static final String crearAct="create table if not exists Actividad(id_actividad integer primary key autoincrement," +
 			"nameAct text," +
@@ -64,8 +70,8 @@ public class NuevaActividad extends Activity{
 		
 		ag = (Button) this.findViewById(R.id.Agregar);		
 		Intent newA = this.getIntent();
-		path = "mnt/extsd/dataapp";
-		//path = Environment.getExternalStorageDirectory().toString();
+		
+		
 	}
 
 	private void abrirBasedatos() 
@@ -73,7 +79,7 @@ public class NuevaActividad extends Activity{
 	  {   
 	    try 
 	    {   
-	    	db = openOrCreateDatabase("/mnt/extsd/dataapp/"+"DB", MODE_PRIVATE, null);
+	    	db = openOrCreateDatabase(DATABASE_PATH+"DB", MODE_PRIVATE, null);
 	      
 	      db.execSQL(crearAct);	       
 	    }    
@@ -106,17 +112,19 @@ public class NuevaActividad extends Activity{
 	    i.setType("image/*");
 	    Intent c = Intent.createChooser(i, "Seleccione Imagen");
 	    startActivityForResult(c,1);
-	}
+	}	
+	
 	
 	public void addvideo (View v){
 
 		flagi = false;
 		flagv = true;
-		flaga = false;		
+		flaga = false;				
 		Intent i = new Intent(Intent.ACTION_GET_CONTENT);
 	    i.setType("video/*");
 	    Intent c = Intent.createChooser(i, "Seleccione Video");
 	    startActivityForResult(c,1);
+	    
 	}
 	
 	public void addaudio (View v){
@@ -148,6 +156,22 @@ public class NuevaActividad extends Activity{
 			        		  "No se ha podido añadir Actividad" ,   Toast.LENGTH_LONG).show();             		
 		
 	}
+	
+	public String getRealPath(Context context, Uri contenturi){
+		Cursor cursor = null;
+		try{
+			String[] proj = {MediaStore.Images.Media.DATA};
+			cursor = context.getContentResolver().query(contenturi, proj, null, null, null);
+			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			cursor.moveToFirst();
+			return cursor.getString(column_index);
+		} finally{
+			if (cursor != null){
+				cursor.close();
+			}				
+		}
+		
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -163,8 +187,10 @@ public class NuevaActividad extends Activity{
 				if (flagi){					
 					Uri imageuri = data.getData();
 					data.getType();
+					//String x =getRealPath(this, imageuri);					
 					oimg = imageuri.getPath();
-					dimg = "mnt/extsd/dataapp/img/"+nombre.getText().toString()+".jpg";				
+					dimg = path+"img/"+nombre.getText().toString()+".jpg";				
+					
 					try{			
 						sourceLocation = new File (oimg);
 						targetLocation = new File (dimg);
@@ -194,7 +220,7 @@ public class NuevaActividad extends Activity{
 					Uri videouri = data.getData();
 					data.getType();
 					ovid = videouri.getPath();
-					dvid = "mnt/extsd/dataapp/vid/"+nombre.getText().toString()+".mp4";				
+					dvid = path+"vid/"+nombre.getText().toString()+".mp4";				
 					try{			
 						sourceLocation = new File (ovid);
 						targetLocation = new File (dvid);
@@ -224,7 +250,7 @@ public class NuevaActividad extends Activity{
 					Uri audiouri = data.getData();
 					data.getType();
 					oaud = audiouri.getPath();
-					daud = "mnt/extsd/dataapp/audio/"+nombre.getText().toString()+".mp3";				
+					daud = path+"audio/"+nombre.getText().toString()+".mp3";				
 					try{			
 						sourceLocation = new File (oaud);
 						targetLocation = new File (daud);

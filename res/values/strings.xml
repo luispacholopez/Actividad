@@ -4,7 +4,7 @@
     <string name="app_name">Actividades</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="NombreProyecto">Proyecto</string>
+    <string name="NombreProyecto">App_Project</string>
     <string name="Usuario">Ingrese Usuario</string>
     <string name="Pass">Ingrese Contraseña</string>
     <string name="Access">Ingresar</string>

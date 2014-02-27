@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ public class Estudiante extends Activity {
 	TextView N,D;
 	ImageView I;
 	VideoView V;
+	MediaPlayer A= new MediaPlayer();
 	Button startV,sendD;
 	Uri path;
 	
@@ -46,19 +48,21 @@ public class Estudiante extends Activity {
 		
 		Intent e= this.getIntent();
 		N.setText(e.getStringExtra("name"));
-		Log.v("mensaje","a"+e.getStringExtra("name"));
+		//Log.v("mensaje","a"+e.getStringExtra("name"));
 		
 		D.setText(e.getStringExtra("desc"));
 		
 		I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
 		path = Uri.parse(e.getStringExtra("vid"));
+		
 		V.setVideoURI(path);
-		V.setMediaController(new MediaController(this));
+		V.setMediaController(new MediaController(this));	
+		
+		
 	}
 //	public void iniciar(View v){
-//		
-//		V.start();
-//		V.requestFocus();
+		//A.prepare();
+//		A.start();//		
 //	}
 	public void senddata(View v){
 		Intent send;

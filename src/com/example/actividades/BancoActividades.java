@@ -105,7 +105,7 @@ public class BancoActividades extends Activity implements OnClickListener{
 		act = new Intent(this,Estudiante.class);		
 		act.putExtra("name",nombres.get(id));		
 		act.putExtra("desc",descripcion.get(id));
-		act.putExtra("img",pathI.get(id));
+		act.putExtra("img",pathI.get(id));		
 		act.putExtra("vid",pathV.get(id));
 		act.putExtra("aud",pathA.get(id));
 		this.startActivityForResult(act, 0);

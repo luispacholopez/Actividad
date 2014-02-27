@@ -16,10 +16,9 @@ public class Main extends Activity {
     boolean flagi=false,flagv=false,flaga=false;
     ArrayList<Uri> uris =new ArrayList<Uri>();    
     Uri imageuri,videouri,audiouri;
-    EditText etEmail, etSubject, etBody;    
-    CheckBox chkAttachment,chkAttachment2,chkAttachment3;
-    Button btnSend;
-    Button addImagen,addVideo,addAudio;
+    EditText etEmail, etSubject, etBody;
+    Button btnSend,btnAdj;    
+    Uri path;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,74 +27,29 @@ public class Main extends Activity {
         
         etEmail = (EditText) findViewById(R.id.etEmail);
         etSubject = (EditText) findViewById(R.id.etSubject);
-        etBody = (EditText) findViewById(R.id.etBody);	
-        
-        chkAttachment = (CheckBox) findViewById(R.id.chkAttachment);
-        chkAttachment2 = (CheckBox) findViewById(R.id.chkAttachmentvid);
-        chkAttachment3 = (CheckBox) findViewById(R.id.chkAttachmentaud);
-        
+        etBody = (EditText) findViewById(R.id.etBody);
+               
         btnSend = (Button) findViewById(R.id.btnSend);
-        addImagen = (Button) findViewById(R.id.addImagen);
-        addVideo = (Button) findViewById(R.id.addVideo);
-        addAudio = (Button) findViewById(R.id.addAudio);        
-    }
-        
-	public void metodo(View v) {
-    	Intent itSend = new Intent(android.content.Intent.ACTION_SEND);
+        btnAdj = (Button) findViewById(R.id.btnAdj);
+                
+    }        
+	    
+    public void adjuntar (View v){
+		Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+	    i.setType("file/*");
+	    Intent c = Intent.createChooser(i, "Seleccione Archivo");
+	    startActivityForResult(c,1);
+	}
+	
+    public void enviar(View v){
+		Intent itSend = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
         itSend.setType("plain/text");
         itSend.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{ etEmail.getText().toString()});                            
         itSend.putExtra(android.content.Intent.EXTRA_SUBJECT, etSubject.getText().toString());
-        itSend.putExtra(android.content.Intent.EXTRA_TEXT, etBody.getText());
-                
-        if (chkAttachment.isChecked()) {        	
-        	//itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(imageuri.toString()));
-        	uris.add(Uri.parse(imageuri.toString()));
-        	itSend.setType("image/jpg");                            	
-        }                        
-        if (chkAttachment2.isChecked()){
-        	//itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(videouri.toString()));
-        	uris.add(Uri.parse(videouri.toString()));
-        	itSend.setType("video/mp4");
-        }
-        if (chkAttachment3.isChecked()){
-        	//itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(audiouri.toString()));
-        	uris.add(Uri.parse(audiouri.toString()));
-        	itSend.setType("audio/mp3");
-        }
-                /* iniciamos la actividad */
-//        itSend.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
-          startActivity(itSend);
-
-	}
-    
-    public void addImagen (View v){    	
-		flagi = true;
-		flagv = false;
-		flaga = false;		
-		Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-	    i.setType("image/*");
-	    Intent c = Intent.createChooser(i, "Seleccione Imagen");
-	    startActivityForResult(c,1);
-	}
-	
-	public void addVideo (View v){
-		flagi = false;
-		flagv = true;
-		flaga = false;		
-		Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-	    i.setType("video/*");
-	    Intent c = Intent.createChooser(i, "Seleccione Video");
-	    startActivityForResult(c,1);
-	}
-	
-	public void addAudio (View v){
-		flagi = false;
-		flagv = false;
-		flaga = true;		
-		Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-	    i.setType("audio/*");
-	    Intent c = Intent.createChooser(i, "Seleccione Audio");
-	    startActivityForResult(c,1);
+        itSend.putExtra(android.content.Intent.EXTRA_TEXT, etBody.getText().toString());
+        itSend.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+        itSend.setType("file/*");
+        startActivity(itSend);                
 	}
 	
 	@Override
@@ -105,20 +59,10 @@ public class Main extends Activity {
 		
 		if (requestCode == 1){
 			if (resultCode == RESULT_OK){
-				if (flagi){					
-					imageuri = data.getData();
-					data.getType();				
-				}
-				if (flagv){					
-					videouri = data.getData();
-					data.getType();				
-				}
-				if (flaga){					
-					audiouri = data.getData();
-					data.getType();				
-				}
+				path = data.getData();
+				data.getType();
+				uris.add(Uri.parse(path.toString()));
 			}
-		}
-			
+		}			
 	}
 }
