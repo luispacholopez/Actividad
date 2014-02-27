@@ -88,6 +88,8 @@ public class BancoActividades extends Activity implements OnClickListener{
 			b[conta].setText(consultor.getString(1));
 			b[conta].setId(conta);
 			b[conta].setOnClickListener(this);
+			//b[conta].setBackgroundColor(getResources().getColor(R.color.azul));
+			b[conta].setTextColor(getResources().getColor(R.color.azul));			
 			capa1.addView(b[conta]);
 			conta=conta+1;			
 		}

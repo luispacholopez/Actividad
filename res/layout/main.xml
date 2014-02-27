@@ -36,21 +36,30 @@
 		
 		<EditText android:layout_width="wrap_content"
  			  android:layout_height="wrap_content" 
- 			  android:lines="5" 
+ 			  android:lines="4" 
  			  android:hint="Mensaje"
  			  android:width="300dip"
 			  android:id="@+id/etBody">
 		</EditText>
+		
+				
 	</LinearLayout>
 		<Button android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
+			android:textColor="@color/azul"
 			android:id="@+id/btnAdj"
 			android:text="Adjuntar"			
 			android:onClick="adjuntar"
 			android:width="150dip">
 	</Button>
+	<TextView android:layout_width="wrap_content"
+ 			  android:layout_height="wrap_content"
+ 			  android:width="300dip"
+			  android:id="@+id/agregados">
+		</TextView>
 	<Button android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
+			android:textColor="@color/azul"
 			android:id="@+id/btnSend"
 			android:text="Enviar"			
 			android:onClick="enviar"

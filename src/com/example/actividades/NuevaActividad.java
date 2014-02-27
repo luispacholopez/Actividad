@@ -29,11 +29,11 @@ public class NuevaActividad extends Activity{
 	
 	SQLiteDatabase db;
 	String fuente = "dataapp/";
-	//String DATABASE_PATH = "/mnt/extsd/"+fuente+"/";
-	String DATABASE_PATH = Environment.getExternalStorageDirectory().toString()+"/"+fuente;
+	String DATABASE_PATH = "/mnt/extsd/"+fuente+"/";
+	//String DATABASE_PATH = Environment.getExternalStorageDirectory().toString()+"/"+fuente;
 	static String nameDB="apli";
-	//String path="mnt/extsd/"+fuente+"/";
-	String path = Environment.getExternalStorageDirectory().toString()+"/"+fuente;
+	String path="mnt/extsd/"+fuente;
+	//String path = Environment.getExternalStorageDirectory().toString()+"/"+fuente;
 	
 	EditText nombre, descripcion;	
 	TextView addimg,addvid,addaud;	
@@ -71,7 +71,6 @@ public class NuevaActividad extends Activity{
 		ag = (Button) this.findViewById(R.id.Agregar);		
 		Intent newA = this.getIntent();
 		
-		
 	}
 
 	private void abrirBasedatos() 
@@ -80,11 +79,12 @@ public class NuevaActividad extends Activity{
 	    try 
 	    {   
 	    	db = openOrCreateDatabase(DATABASE_PATH+"DB", MODE_PRIVATE, null);
-	      
-	      db.execSQL(crearAct);	       
+	    	//Toast.makeText(getApplicationContext(), "Entra a la BASE", Toast.LENGTH_LONG).show();
+	    	db.execSQL(crearAct);	       
 	    }    
 	    catch (Exception e)
 	    {   
+	      Toast.makeText(getApplicationContext(), "No"+e, Toast.LENGTH_LONG).show();
 	      Log.i("base", "No" + e);   
 	    }   
 	  }  

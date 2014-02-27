@@ -24,22 +24,21 @@ public class LoginAdmin extends Activity {
 		user = (EditText) this.findViewById(R.id.eUsuario);
 		user.setText("");
 		pass = (EditText) this.findViewById(R.id.ePassword);
-		db = this.openOrCreateDatabase("based", MODE_PRIVATE, null);
-		String crearUsuario="create table if not exists Usuarios(id_usuario integer primary key autoincrement," +
-				"usuario text," +
-				"password text)";
-		db.execSQL(crearUsuario);
-		db.execSQL("insert into Usuarios(usuario,password) values ('admin','admin')");		
-		Cursor consulta = db.rawQuery("select * from Usuarios", null);
-		db.close();
-		
+//		db = this.openOrCreateDatabase("based", MODE_PRIVATE, null);
+//		String crearUsuario="create table if not exists Usuarios(id_usuario integer primary key autoincrement," +
+//				"usuario text," +
+//				"password text)";
+//		db.execSQL(crearUsuario);
+//		db.execSQL("insert into Usuarios(usuario,password) values ('admin','admin')");		
+//		Cursor consulta = db.rawQuery("select * from Usuarios", null);
+//		db.close();		
 		
 	}
 	public void acceso (View v){		
 		
 		if (user.getEditableText().toString().contentEquals("admin")) {
 			
-			if (pass.getEditableText().toString().contentEquals("admin")){
+			if (pass.getEditableText().toString().contentEquals("Admin1")){
 				Toast aviso;
 		    	aviso = Toast.makeText(this,"Bienvenido",1000);			    	
 		    	aviso.show();

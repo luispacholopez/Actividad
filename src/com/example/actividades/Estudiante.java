@@ -1,5 +1,7 @@
 package com.example.actividades;
 
+import java.io.IOException;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +26,7 @@ public class Estudiante extends Activity {
 	ImageView I;
 	VideoView V;
 	MediaPlayer A= new MediaPlayer();
-	Button startV,sendD;
+	Button startV,playA,stopA,sendD;
 	Uri path;
 	
 	@Override
@@ -45,6 +47,8 @@ public class Estudiante extends Activity {
 		
 		V = (VideoView) this.findViewById(R.id.Vidact);		
 		sendD = (Button) this.findViewById(R.id.botonenviar);
+		stopA = (Button) this.findViewById(R.id.stop);
+		playA = (Button) this.findViewById(R.id.play);
 		
 		Intent e= this.getIntent();
 		N.setText(e.getStringExtra("name"));
@@ -52,18 +56,44 @@ public class Estudiante extends Activity {
 		
 		D.setText(e.getStringExtra("desc"));
 		
-		I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
-		path = Uri.parse(e.getStringExtra("vid"));
+		if (e.getStringExtra("img") != null){			
+			I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
+		}
 		
-		V.setVideoURI(path);
-		V.setMediaController(new MediaController(this));	
-		
-		
+		if (e.getStringExtra("vid") != null){
+			path = Uri.parse(e.getStringExtra("vid"));
+			V.setVideoURI(path);
+			V.setMediaController(new MediaController(this));
+		}
+			
+		if (e.getStringExtra("aud") != null){			
+			try {
+				A.setDataSource(e.getStringExtra("aud"));
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IllegalStateException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
+		}		
 	}
-//	public void iniciar(View v){
-		//A.prepare();
-//		A.start();//		
-//	}
+	
+	public void play(View v) throws IllegalStateException, IOException{
+		A.prepare();
+		A.start();
+	}
+	
+	public void stop(View v){
+		A.stop();		
+	}	
+	
 	public void senddata(View v){
 		Intent send;
 		send = new Intent(this,Main.class);

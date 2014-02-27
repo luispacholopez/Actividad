@@ -1,35 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">     
+    android:layout_height="match_parent">     
     <LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">   
         <TextView
+            android:textStyle="bold"
+	        android:textColor="@color/azul"
+	        android:gravity="center"
+	        android:textSize="60px"
             android:id="@+id/nombreact" 
             android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:text="hh"    		
-         />
-        <TextView
+    		android:layout_height="wrap_content"/>
+        
+        <TextView            
             android:id="@+id/descripact" 
             android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"    	
-    		android:text="hh"	
-         />        
+    		android:layout_height="wrap_content"/>
+                
         <ImageView 
             android:id="@+id/Imgact" 
-            android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		    		
-    		/>        
-        <VideoView 
-            android:id="@+id/Vidact" 
-            android:layout_width="640px"
-    		android:layout_height="480px"/>
+            android:layout_width="320px"
+    		android:layout_height="240px"
+    		android:layout_gravity="center"/>
+        
+        <TextView android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"
+	    		android:text="  "/>
                 
+        <VideoView 
+            android:id="@+id/Vidact"
+            android:layout_gravity="center"
+            android:layout_width="320px"
+    		android:layout_height="240px"/>
+               
+        <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <Button
+                android:background="@color/azul"
+                android:textColor="@color/gris"
+	            android:id="@+id/play" 
+	            android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"    	
+	    		android:text="Play Audio"
+	    		android:onClick="play"/>
+            
+            <TextView android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"
+	    		android:text="  "/>
+            
+        	<Button
+        	    android:background="@color/azul"
+                android:textColor="@color/gris"
+	            android:id="@+id/stop" 
+	            android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"    	
+	    		android:text="Stop Audio"
+	    		android:onClick="stop"	
+         	/>            
+        </LinearLayout>
+        
+        <TextView android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"
+	    		android:text="  "/>
+        
         <Button
+            android:background="@color/azul"
+                android:textColor="@color/gris"
             android:id="@+id/botonenviar" 
             android:layout_width="fill_parent"
     		android:layout_height="wrap_content"    	
