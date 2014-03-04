@@ -12,34 +12,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NuevaActividad extends Activity{
-	
+public class Update extends Activity{
+
 	SQLiteDatabase db;
 	String fuente = "dataapp/";
 	String DATABASE_PATH = "/mnt/sdcard/"+fuente;	
 	String path="/mnt/sdcard/"+fuente;
-
-	EditText nombre, competencias, descripcion, evaluacion;	
-	TextView addimg,addvid,addaud;	
-	Button adjimg,adjvid,adjaud,ag;	
-		
-	boolean flagi=false, flagv=false,flaga=false;	
-	String oimg="",ovid="",oaud="";
-	String dimg="",dvid="",daud="";
-	
 	
 	private static final String crearAct="create table if not exists Actividad(id_actividad integer primary key autoincrement," +
 			"nameAct text," +
@@ -50,30 +38,48 @@ public class NuevaActividad extends Activity{
 			"pathV text," +
 			"pathA text)";
 	
+	TextView I,V,A;
+	EditText N,C,D,E;
+	Button aI,aV,aA,act;
+	boolean flagi=false,flagv=false,flaga=false;
+	String oimg="",ovid="",oaud="";
+	String dimg="",dvid="",daud="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stubt
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_nuevaactividad);
+		setContentView(R.layout.update);
 		
-		nombre = (EditText) this.findViewById(R.id.nameAct);
-		competencias = (EditText) this.findViewById(R.id.compAct);
-		descripcion = (EditText) this.findViewById(R.id.descAct);
-		evaluacion= (EditText) this.findViewById(R.id.evalAct);
+		N = (EditText) this.findViewById(R.id.nombreActividad);
+		C = (EditText) this.findViewById(R.id.competenciasActividad);
+		D = (EditText) this.findViewById(R.id.descripcionActividad);
+		E = (EditText) this.findViewById(R.id.evaluacionAct);
 		
-		addimg = (TextView) this.findViewById(R.id.texImagen);
-		addvid = (TextView) this.findViewById(R.id.texVideo);
-		addaud = (TextView) this.findViewById(R.id.texAudio);
+		I = (TextView) this.findViewById(R.id.texImagen);
+		V = (TextView) this.findViewById(R.id.texVideo);
+		A = (TextView) this.findViewById(R.id.texAudio);
 		
-		adjimg = (Button) this.findViewById(R.id.bImagen);
-		adjvid = (Button) this.findViewById(R.id.bVideo);
-		adjaud = (Button) this.findViewById(R.id.bAudio);
+		aI = (Button) this.findViewById(R.id.bImagen);
+		aV = (Button) this.findViewById(R.id.bVideo);
+		aA = (Button) this.findViewById(R.id.bAudio);
 		
-		ag = (Button) this.findViewById(R.id.Agregar);		
-		Intent newA = this.getIntent();
+		act = (Button) this.findViewById(R.id.Actualizar);
 		
+		Intent upd = this.getIntent();
+		
+		N.setText(upd.getStringExtra("name"));
+		C.setText(upd.getStringExtra("comp"));
+		D.setText(upd.getStringExtra("desc"));
+		E.setText(upd.getStringExtra("eval"));
+		
+		I.setText(upd.getStringExtra("img"));
+		dimg=upd.getStringExtra("img");
+		V.setText(upd.getStringExtra("vid"));
+		dvid=upd.getStringExtra("vid");
+		A.setText(upd.getStringExtra("aud"));
+		daud=upd.getStringExtra("aud");	
 	}
-
+	
 	private void abrirBasedatos() 
 
 	  {   
@@ -87,11 +93,10 @@ public class NuevaActividad extends Activity{
 	    { 
 	      Log.i("base", "No" + e);   
 	    }   
-	  }  
+	  }
 	
-	public boolean insertarActividad(String n, String c, String d, String e, String pI, String pV, String pA) 
-	  {   
-	    ContentValues values = new ContentValues();   
+	public void cargar(String n,String c,String d,String e,String pI,String pV,String pA){
+		ContentValues values = new ContentValues();   
 	    values.put("nameAct",n);
 	    values.put("compAct",c);
 	    values.put("descAct",d);
@@ -100,9 +105,23 @@ public class NuevaActividad extends Activity{
 	    values.put("pathV", pV);
 	    values.put("pathA", pA);
 	    
-	    return (db.insert("Actividad", null, values) > 0);   
-	  }	
+	    db.update("Actividad", values, "nameAct ="+"'"+N.getText().toString()+"'", null);	    
+	    Toast.makeText(getApplicationContext(),"Actividad Actualizada Correctamente", Toast.LENGTH_LONG).show();
+        this.finish();
+	}
 	
+	public void actualizar (View v){
+		String n = N.getEditableText().toString();		
+		String c = C.getEditableText().toString();
+		String d = D.getEditableText().toString();
+		String e = E.getEditableText().toString();
+		String img = dimg;
+		String vid = dvid;
+		String aud = daud;
+
+		abrirBasedatos();
+		cargar(n,c,d,e,img,vid,aud);
+	}
 	public void addimagen (View v){
 
 		flagi = true;
@@ -134,27 +153,6 @@ public class NuevaActividad extends Activity{
 	    i.setType("audio/*");
 	    Intent c = Intent.createChooser(i, "Seleccione Audio");
 	    startActivityForResult(c,1);
-	}
-			
-	public void agregar (View v){
-		String n = nombre.getEditableText().toString();		
-		String c = competencias.getEditableText().toString();
-		String d = descripcion.getEditableText().toString();
-		String e = evaluacion.getEditableText().toString();
-		String img = dimg;
-		String vid = dvid;
-		String aud = daud;
-
-		abrirBasedatos();
-		
-		boolean resultado = insertarActividad(n,c,d,e,img,vid,aud);
-	        if(resultado) {
-	          Toast.makeText(getApplicationContext(),"Actividad Añadida Correctamente", Toast.LENGTH_LONG).show();
-	          this.finish();
-	        }
-	        else {
-	          Toast.makeText(getApplicationContext(),"No se ha podido añadir Actividad" + resultado, Toast.LENGTH_LONG).show();
-	        }
 	}
 	
 	public String getRealPath(Context context, Uri contenturi){
@@ -203,7 +201,7 @@ public class NuevaActividad extends Activity{
 		}
 		
 	}
-
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
@@ -219,7 +217,7 @@ public class NuevaActividad extends Activity{
 					data.getType();
 					oimg =getRealPath(this, imageuri);					
 					//oimg = imageuri.getPath();
-					dimg = path+"img/"+nombre.getText().toString()+".jpg";				
+					dimg = path+"img/"+N.getText().toString()+".jpg";				
 					//addimg.setText(oimg+dimg);
 					try{			
 						sourceLocation = new File (oimg);
@@ -236,7 +234,7 @@ public class NuevaActividad extends Activity{
 				            }			            
 				            in.close();
 				            out.close();
-				            addimg.setText(dimg);			            
+				            I.setText(dimg);			            
 				        }
 					} catch (NullPointerException e) {
 					    e.printStackTrace();
@@ -251,7 +249,7 @@ public class NuevaActividad extends Activity{
 					data.getType();
 					ovid =getRealPathv(this, videouri);
 					//ovid = videouri.getPath();
-					dvid = path+"vid/"+nombre.getText().toString()+".mp4";				
+					dvid = path+"vid/"+N.getText().toString()+".mp4";				
 					try{			
 						sourceLocation = new File (ovid);
 						targetLocation = new File (dvid);
@@ -267,7 +265,7 @@ public class NuevaActividad extends Activity{
 				            }			            
 				            in.close();
 				            out.close();
-				            addvid.setText(dvid);			            
+				            V.setText(dvid);			            
 				        }
 					} catch (NullPointerException e) {
 					    e.printStackTrace();
@@ -282,7 +280,7 @@ public class NuevaActividad extends Activity{
 					data.getType();
 					oaud =getRealPatha(this, audiouri);
 					//oaud = audiouri.getPath();
-					daud = path+"audio/"+nombre.getText().toString()+".mp3";				
+					daud = path+"audio/"+N.getText().toString()+".mp3";				
 					try{			
 						sourceLocation = new File (oaud);
 						targetLocation = new File (daud);
@@ -298,7 +296,6 @@ public class NuevaActividad extends Activity{
 				            }			            
 				            in.close();
 				            out.close();
-				            addaud.setText(daud);			            
 				        }
 					} catch (NullPointerException e) {
 					    e.printStackTrace();
@@ -308,5 +305,6 @@ public class NuevaActividad extends Activity{
 				}//end Audio
 			}
 		}
+
 	}
 }

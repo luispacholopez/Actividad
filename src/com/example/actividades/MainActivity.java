@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	Button Admin, Estudiante;
@@ -24,7 +25,7 @@ public class MainActivity extends Activity {
 	
 	public void onEstudiante (View v){
 		Intent BancoAct; 
-    	BancoAct = new Intent(this,BancoActividades.class);    	
+		BancoAct = new Intent(this,BancoActividades.class);    	
     	this.startActivityForResult(BancoAct, 0);
 	}
 

@@ -9,7 +9,9 @@
     <string name="Pass">Ingrese Contraseña</string>
     <string name="Access">Ingresar</string>
     <string name="nombreNuevaActividad">Ingrese Nombre Actividad</string>
-    <string name="descripcionNuevaActividad">Ingrese Descripcion Actividad</string>
+    <string name="competenciasNuevaActividad">Ingrese Competencias Actividad</string>
+    <string name="descripcionNuevaActividad">Ingrese Descripción Actividad</string>
+    <string name="evaluacionNuevaActividad">Ingrese Evaluación Actividad</string>
     <string name="bagregarImg">Agregar Imagen</string>
     <string name="bagregarVid">Agregar Video</string>
     <string name="bagregarAud">Agregar Sonido</string>    

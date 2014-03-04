@@ -43,7 +43,7 @@ public class LoginAdmin extends Activity {
 		    	aviso = Toast.makeText(this,"Bienvenido",1000);			    	
 		    	aviso.show();
 				Intent newA; 
-		    	newA = new Intent(this,NuevaActividad.class);    	
+		    	newA = new Intent(this,Administrador.class);    	
 		    	this.startActivityForResult(newA, 0);
 			}			
 			else {

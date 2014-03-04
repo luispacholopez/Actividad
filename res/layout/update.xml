@@ -15,10 +15,9 @@
 	 	<EditText
 	 	    android:background="@drawable/cajas"
 	 	    android:layout_gravity="center"
-	 	    android:id="@+id/nameAct"
+	 	    android:id="@+id/nombreActividad"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/nombreNuevaActividad"/>
+	        android:layout_height="wrap_content"/>        
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
@@ -26,10 +25,9 @@
 	 	<EditText 	    
 	 	    android:background="@drawable/cajas"
 	 	    android:layout_gravity="center"
-	 	    android:id="@+id/compAct"
+	 	    android:id="@+id/competenciasActividad"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/competenciasNuevaActividad"/>
+	        android:layout_height="wrap_content"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
@@ -37,11 +35,10 @@
 	 	<EditText
 	 	    android:background="@drawable/cajas"
 	 	    android:layout_gravity="center"
-	 	    android:id="@+id/descAct"
+	 	    android:id="@+id/descripcionActividad"
 	 	    android:lines="5"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/descripcionNuevaActividad"	        
+	        android:layout_height="wrap_content"	        	        
 	        android:inputType="textMultiLine"/>
 	    <TextView 
 	 	    android:layout_width="wrap_content"
@@ -49,10 +46,9 @@
 	 	<EditText 	    
 	 	    android:background="@drawable/cajas"
 	 	    android:layout_gravity="center"
-	 	    android:id="@+id/evalAct"
+	 	    android:id="@+id/evaluacionAct"
 	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/evaluacionNuevaActividad"/>
+	        android:layout_height="wrap_content"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
@@ -116,9 +112,9 @@
  		    android:background="@drawable/botones"
 	 	    android:layout_gravity="center"
 	 	    android:textColor="@color/gris"	 	    
-	 	    android:id="@+id/Agregar"
-	 	    android:text="Agregar Actividad"
-	 	    android:onClick="agregar"
+	 	    android:id="@+id/Actualizar"
+	 	    android:text="Actualizar Actividad"
+	 	    android:onClick="actualizar"
 	 	    android:layout_width="match_parent" 
 			android:layout_height="wrap_content"/>
  		

@@ -22,52 +22,62 @@ import android.widget.VideoView;
 @SuppressLint("NewApi")
 public class Estudiante extends Activity {
 	
-	TextView N,D;
+	TextView N,C,D,E,t;
 	ImageView I;
 	VideoView V;
 	MediaPlayer A= new MediaPlayer();
 	Button startV,playA,stopA,sendD;
 	Uri path;
 	
+	String textoComp = "Las competencias que vas a desarrollar con esta actividad son las siguientes: \n";
+	String textoEval = "La manera en que se evaluara la actividad será: \n";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.estudiante);
-		
+		t = (TextView) this.findViewById(R.id.t);
 		N = (TextView) this.findViewById(R.id.nombreact);
-		D = (TextView) this.findViewById(R.id.descripact);		
-		I = (ImageView) this.findViewById(R.id.Imgact);
-		
-		Display display = getWindowManager().getDefaultDisplay();
-		Point size = new Point();
-		display.getSize(size);
-		I.setMaxWidth(size.x);
-		I.setMaxHeight(size.y);
-		
+		C = (TextView) this.findViewById(R.id.comppact);
+		D = (TextView) this.findViewById(R.id.descripact);
+		E = (TextView) this.findViewById(R.id.evalpact);
+		I = (ImageView) this.findViewById(R.id.Imgact);		
 		V = (VideoView) this.findViewById(R.id.Vidact);		
 		sendD = (Button) this.findViewById(R.id.botonenviar);
 		stopA = (Button) this.findViewById(R.id.stop);
 		playA = (Button) this.findViewById(R.id.play);
 		
 		Intent e= this.getIntent();
-		N.setText(e.getStringExtra("name"));
-		//Log.v("mensaje","a"+e.getStringExtra("name"));
-		
+		N.setText(e.getStringExtra("name"));		
+		C.setText(textoComp+e.getStringExtra("comp"));
 		D.setText(e.getStringExtra("desc"));
+		E.setText(textoEval+e.getStringExtra("eval"));		
+					
+		I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
 		
-		if (e.getStringExtra("img") != null){			
-			I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
+		if (e.getStringExtra("vid").isEmpty()){			
+			V.setVisibility(View.INVISIBLE);
+			//t.setText("vacio");
 		}
-		
-		if (e.getStringExtra("vid") != null){
+		else{
 			path = Uri.parse(e.getStringExtra("vid"));
 			V.setVideoURI(path);
 			V.setMediaController(new MediaController(this));
-		}
+		}		
 			
-		if (e.getStringExtra("aud") != null){			
+		if (e.getStringExtra("aud").isEmpty()){
+			playA.setVisibility(View.INVISIBLE);
+			stopA.setVisibility(View.INVISIBLE);			
+			playA.setEnabled(false);
+			stopA.setEnabled(false);
+		}	
+		else{
 			try {
+				playA.setAlpha(100);
+				stopA.setAlpha(100);
+				playA.setEnabled(true);
+				stopA.setEnabled(true);
 				A.setDataSource(e.getStringExtra("aud"));
 			} catch (IllegalArgumentException e1) {
 				// TODO Auto-generated catch block
@@ -81,8 +91,8 @@ public class Estudiante extends Activity {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}			
-		}		
+			}
+		}
 	}
 	
 	public void play(View v) throws IllegalStateException, IOException{

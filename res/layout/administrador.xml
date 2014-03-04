@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+    
+    <Button 
+        android:background="@drawable/botones"
+        android:textColor="@color/gris"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCrear"
+        android:onClick="crear"
+        android:text="Crear Actividad"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        />
+    
+    <Button 
+        android:background="@drawable/botones"
+        android:textColor="@color/gris"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnModificar"
+        android:onClick="modificar"
+        android:text="Modificar Actividad"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        />
+    
+    <Button
+        android:background="@drawable/botones"
+        android:textColor="@color/gris" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEliminar"
+        android:onClick="eliminar"
+        android:text="Eliminar Actividad"/>
+
+</LinearLayout>

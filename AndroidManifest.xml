@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>    
 
     <application
         android:allowBackup="true"
@@ -29,6 +31,12 @@
             android:label="Acceso" >
         </activity>
         <activity
+            android:configChanges="orientation|screenSize"
+            android:name="com.example.actividades.Administrador"
+            android:label="Administrador" >
+        </activity>
+        
+        <activity
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
             android:name="com.example.actividades.BancoActividades"
@@ -39,6 +47,24 @@
             android:configChanges="orientation|screenSize"
             android:name="com.example.actividades.NuevaActividad"            
             android:label="Nueva Actividad" >
+        </activity>
+        <activity            
+            android:permission="android.permission.READ_EXTERNAL_STORAGE"
+            android:configChanges="orientation|screenSize"
+            android:name="com.example.actividades.ModificarActividad"            
+            android:label="Modificar Actividad" >
+        </activity>
+        <activity            
+            android:permission="android.permission.READ_EXTERNAL_STORAGE"
+            android:configChanges="orientation|screenSize"
+            android:name="com.example.actividades.Update"            
+            android:label="Actualizar Actividad" >
+        </activity>
+        <activity            
+            android:permission="android.permission.READ_EXTERNAL_STORAGE"
+            android:configChanges="orientation|screenSize"
+            android:name="com.example.actividades.EliminarActividad"            
+            android:label="Eliminar Actividad" >
         </activity>
         <activity            
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
