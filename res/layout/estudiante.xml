@@ -48,6 +48,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        
+       <Button
+                android:background="@color/azul"
+                android:textColor="@color/gris"
+	            android:id="@+id/apk" 
+	            android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"    	
+	    		android:text="Instalar Apk"
+	    		android:onClick="install"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
                 
         <ImageView
             android:layout_gravity="center" 

@@ -52,6 +52,24 @@
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
+	 	<Spinner 
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"
+	 	    android:layout_gravity="center"
+	 	    android:gravity="center"
+	 	    android:id="@+id/spinner"/>
+	 	<TextView 
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+	 	<EditText 	    
+	 	    android:background="@drawable/cajas"
+	 	    android:layout_gravity="center"
+	 	    android:id="@+id/destinoAct"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"/>
+	 	<TextView 
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
  		<Button
  		    android:background="@drawable/botones"
  		    android:layout_gravity="center"

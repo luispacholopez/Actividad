@@ -24,7 +24,9 @@ public class ModificarActividad extends Activity implements OnClickListener{
 			"nameAct text," +
 			"compAct text," +
 			"descAct text," +
-			"evalAct text," +			
+			"evalAct text," +	
+			"destAct text," +
+			"pathApk text," +
 			"pathI text," +
 			"pathV text," +
 			"pathA text)";
@@ -37,6 +39,8 @@ public class ModificarActividad extends Activity implements OnClickListener{
 	ArrayList<String> competencias=new ArrayList<String>();
 	ArrayList<String> descripcion=new ArrayList<String>();
 	ArrayList<String> evaluacion=new ArrayList<String>();
+	ArrayList<String> destinatario=new ArrayList<String>();
+	ArrayList<String> pathApk=new ArrayList<String>();
 	ArrayList<String> pathI=new ArrayList<String>();
 	ArrayList<String> pathV=new ArrayList<String>();
 	ArrayList<String> pathA=new ArrayList<String>();
@@ -44,11 +48,9 @@ public class ModificarActividad extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		general = new ScrollView(this);
-		
+		general = new ScrollView(this);		
 		capa1 = new LinearLayout(this);
 		capa1.setOrientation(LinearLayout.VERTICAL);
-
 		abrirBasedatos();
 		botones();
 		general.addView(capa1);
@@ -77,9 +79,11 @@ public class ModificarActividad extends Activity implements OnClickListener{
 			competencias.add(consultor.getString(2));
 			descripcion.add(consultor.getString(3));
 			evaluacion.add(consultor.getString(4));
-			pathI.add(consultor.getString(5));
-			pathV.add(consultor.getString(6));
-			pathA.add(consultor.getString(7));
+			destinatario.add(consultor.getString(5));
+			pathApk.add(consultor.getString(6));
+			pathI.add(consultor.getString(7));
+			pathV.add(consultor.getString(8));
+			pathA.add(consultor.getString(9));
 			b = new Button(this);
 			b.setText(consultor.getString(1));
 			b.setId(conta);
@@ -102,6 +106,8 @@ public class ModificarActividad extends Activity implements OnClickListener{
 		upd.putExtra("comp",competencias.get(id));
 		upd.putExtra("desc",descripcion.get(id));
 		upd.putExtra("eval",evaluacion.get(id));
+		upd.putExtra("dest",destinatario.get(id));
+		upd.putExtra("apk",pathApk.get(id));
 		upd.putExtra("img",pathI.get(id));
 		upd.putExtra("vid",pathV.get(id));
 		upd.putExtra("aud",pathA.get(id));

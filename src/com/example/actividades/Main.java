@@ -35,7 +35,8 @@ public class Main extends Activity {
         
         btnSend = (Button) findViewById(R.id.btnSend);
         btnAdj = (Button) findViewById(R.id.btnAdj);
-          
+        Intent e= this.getIntent();
+		etEmail.setText(e.getStringExtra("destinatario"));
     }        
 	    
     public void adjuntar (View v){

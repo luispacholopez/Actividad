@@ -26,7 +26,9 @@ public class EliminarActividad extends Activity implements OnClickListener{
 			"nameAct text," +
 			"compAct text," +
 			"descAct text," +
-			"evalAct text," +			
+			"evalAct text," +	
+			"destAct text," +
+			"pathApk text," +
 			"pathI text," +
 			"pathV text," +
 			"pathA text)";
@@ -73,9 +75,9 @@ public class EliminarActividad extends Activity implements OnClickListener{
 		int conta = 0;		
 		while(consultor.moveToNext() == true){			
 			nombres.add(consultor.getString(1));
-			pathI.add(consultor.getString(5));
-			pathV.add(consultor.getString(6));
-			pathA.add(consultor.getString(7));
+			pathI.add(consultor.getString(7));
+			pathV.add(consultor.getString(8));
+			pathA.add(consultor.getString(9));
 			b = new Button(this);
 			b.setText(consultor.getString(1));
 			b.setId(conta);

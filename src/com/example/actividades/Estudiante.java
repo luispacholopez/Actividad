@@ -1,5 +1,6 @@
 package com.example.actividades;
 
+import java.io.File;
 import java.io.IOException;
 
 import android.annotation.SuppressLint;
@@ -26,7 +27,8 @@ public class Estudiante extends Activity {
 	ImageView I;
 	VideoView V;
 	MediaPlayer A= new MediaPlayer();
-	Button startV,playA,stopA,sendD;
+	String apl,destino;
+	Button startV,playA,stopA,sendD,installApk;
 	Uri path;
 	
 	String textoComp = "Las competencias que vas a desarrollar con esta actividad son las siguientes: \n";
@@ -47,13 +49,17 @@ public class Estudiante extends Activity {
 		sendD = (Button) this.findViewById(R.id.botonenviar);
 		stopA = (Button) this.findViewById(R.id.stop);
 		playA = (Button) this.findViewById(R.id.play);
+		installApk = (Button) this.findViewById(R.id.apk);
 		
 		Intent e= this.getIntent();
 		N.setText(e.getStringExtra("name"));		
 		C.setText(textoComp+e.getStringExtra("comp"));
 		D.setText(e.getStringExtra("desc"));
 		E.setText(textoEval+e.getStringExtra("eval"));		
-					
+		destino = e.getStringExtra("dest");
+		apl = e.getStringExtra("papk");
+		
+		
 		I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
 		
 		if (e.getStringExtra("vid").isEmpty()){			
@@ -104,9 +110,19 @@ public class Estudiante extends Activity {
 		A.stop();		
 	}	
 	
+	
+	public void install(View v){		
+		//t.setText(apl+" uno");
+		Intent inte = new Intent(Intent.ACTION_VIEW);
+		inte.setDataAndType(Uri.fromFile(new File("/mnt/sdcard/dataapp/apps/"+apl)), "application/vnd.android.package-archive");
+		inte.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(inte);
+		
+	}
 	public void senddata(View v){
 		Intent send;
 		send = new Intent(this,Main.class);
+		send.putExtra("destinatario", destino);
 		this.startActivityForResult(send, 0);
 	}
 }

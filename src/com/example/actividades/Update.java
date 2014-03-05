@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -17,8 +18,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,17 +38,24 @@ public class Update extends Activity{
 			"nameAct text," +
 			"compAct text," +
 			"descAct text," +
-			"evalAct text," +			
+			"evalAct text," +	
+			"destAct text," +
+			"pathApk text," +
 			"pathI text," +
 			"pathV text," +
 			"pathA text)";
 	
 	TextView I,V,A;
-	EditText N,C,D,E;
+	EditText N,C,D,E,Dt;
 	Button aI,aV,aA,act;
 	boolean flagi=false,flagv=false,flaga=false;
 	String oimg="",ovid="",oaud="";
 	String dimg="",dvid="",daud="";
+	
+	Spinner apks;
+	ArrayList<String> archivos= new ArrayList<String>();
+	ArrayAdapter<String> adapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -54,6 +66,8 @@ public class Update extends Activity{
 		C = (EditText) this.findViewById(R.id.competenciasActividad);
 		D = (EditText) this.findViewById(R.id.descripcionActividad);
 		E = (EditText) this.findViewById(R.id.evaluacionAct);
+		Dt = (EditText) this.findViewById(R.id.destinoAct);
+		apks = (Spinner) this.findViewById(R.id.spinner);
 		
 		I = (TextView) this.findViewById(R.id.texImagen);
 		V = (TextView) this.findViewById(R.id.texVideo);
@@ -71,6 +85,8 @@ public class Update extends Activity{
 		C.setText(upd.getStringExtra("comp"));
 		D.setText(upd.getStringExtra("desc"));
 		E.setText(upd.getStringExtra("eval"));
+		Dt.setText(upd.getStringExtra("dest"));
+		
 		
 		I.setText(upd.getStringExtra("img"));
 		dimg=upd.getStringExtra("img");
@@ -78,6 +94,12 @@ public class Update extends Activity{
 		dvid=upd.getStringExtra("vid");
 		A.setText(upd.getStringExtra("aud"));
 		daud=upd.getStringExtra("aud");	
+		
+		archivos.add("");
+		leerDir();
+		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,archivos);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		apks.setAdapter(adapter);
 	}
 	
 	private void abrirBasedatos() 
@@ -95,12 +117,14 @@ public class Update extends Activity{
 	    }   
 	  }
 	
-	public void cargar(String n,String c,String d,String e,String pI,String pV,String pA){
+	public void cargar(String n,String c,String d,String e,String dt,String a,String pI,String pV,String pA){
 		ContentValues values = new ContentValues();   
 	    values.put("nameAct",n);
 	    values.put("compAct",c);
 	    values.put("descAct",d);
 	    values.put("evalAct",e);
+	    values.put("destAct",dt);
+	    values.put("pathApk",a);
 	    values.put("pathI", pI);
 	    values.put("pathV", pV);
 	    values.put("pathA", pA);
@@ -110,18 +134,41 @@ public class Update extends Activity{
         this.finish();
 	}
 	
+	public void leerDir(){		
+		File f = new File(path+"apps");
+		File[] files = f.listFiles();		
+		for (int i = 0; i < files.length; i++){
+			File file = files[i];			
+			if(file.isFile()){
+				archivos.add(file.getName());				
+			}
+		}
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	public void actualizar (View v){
 		String n = N.getEditableText().toString();		
 		String c = C.getEditableText().toString();
 		String d = D.getEditableText().toString();
 		String e = E.getEditableText().toString();
+		String dt = Dt.getEditableText().toString();
+		String a = apks.getSelectedItem().toString();
 		String img = dimg;
 		String vid = dvid;
 		String aud = daud;
 
-		abrirBasedatos();
-		cargar(n,c,d,e,img,vid,aud);
+		abrirBasedatos();		
+		cargar(n,c,d,e,dt,a,img,vid,aud);
 	}
+	
+	
 	public void addimagen (View v){
 
 		flagi = true;

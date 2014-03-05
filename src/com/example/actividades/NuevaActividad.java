@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -19,9 +20,13 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,20 +37,25 @@ public class NuevaActividad extends Activity{
 	String DATABASE_PATH = "/mnt/sdcard/"+fuente;	
 	String path="/mnt/sdcard/"+fuente;
 
-	EditText nombre, competencias, descripcion, evaluacion;	
+	EditText nombre, competencias, descripcion, evaluacion, destinatario;	
 	TextView addimg,addvid,addaud;	
 	Button adjimg,adjvid,adjaud,ag;	
+	Spinner apks;
 		
 	boolean flagi=false, flagv=false,flaga=false;	
 	String oimg="",ovid="",oaud="";
 	String dimg="",dvid="",daud="";
 	
-	
+	ArrayList<String> archivos= new ArrayList<String>();
+	ArrayAdapter<String> adapter;	
+		
 	private static final String crearAct="create table if not exists Actividad(id_actividad integer primary key autoincrement," +
 			"nameAct text," +
 			"compAct text," +
 			"descAct text," +
-			"evalAct text," +			
+			"evalAct text," +
+			"destAct text," +
+			"pathApk text," +
 			"pathI text," +
 			"pathV text," +
 			"pathA text)";
@@ -60,6 +70,7 @@ public class NuevaActividad extends Activity{
 		competencias = (EditText) this.findViewById(R.id.compAct);
 		descripcion = (EditText) this.findViewById(R.id.descAct);
 		evaluacion= (EditText) this.findViewById(R.id.evalAct);
+		destinatario= (EditText) this.findViewById(R.id.destino);
 		
 		addimg = (TextView) this.findViewById(R.id.texImagen);
 		addvid = (TextView) this.findViewById(R.id.texVideo);
@@ -69,9 +80,15 @@ public class NuevaActividad extends Activity{
 		adjvid = (Button) this.findViewById(R.id.bVideo);
 		adjaud = (Button) this.findViewById(R.id.bAudio);
 		
+		apks = (Spinner) this.findViewById(R.id.spinner);
+		
 		ag = (Button) this.findViewById(R.id.Agregar);		
 		Intent newA = this.getIntent();
-		
+		archivos.add("");
+		leerDir();
+		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,archivos);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		apks.setAdapter(adapter);
 	}
 
 	private void abrirBasedatos() 
@@ -89,19 +106,31 @@ public class NuevaActividad extends Activity{
 	    }   
 	  }  
 	
-	public boolean insertarActividad(String n, String c, String d, String e, String pI, String pV, String pA) 
+	public boolean insertarActividad(String n, String c, String d, String e, String dest, String apk,String pI, String pV, String pA) 
 	  {   
 	    ContentValues values = new ContentValues();   
 	    values.put("nameAct",n);
 	    values.put("compAct",c);
 	    values.put("descAct",d);
 	    values.put("evalAct",e);
+	    values.put("destAct",dest);
+	    values.put("pathApk",apk);
 	    values.put("pathI", pI);
 	    values.put("pathV", pV);
-	    values.put("pathA", pA);
-	    
+	    values.put("pathA", pA);	    
 	    return (db.insert("Actividad", null, values) > 0);   
 	  }	
+
+	public void leerDir(){		
+		File f = new File(path+"apps");
+		File[] files = f.listFiles();		
+		for (int i = 0; i < files.length; i++){
+			File file = files[i];			
+			if(file.isFile()){
+				archivos.add(file.getName());				
+			}
+		}
+	}
 	
 	public void addimagen (View v){
 
@@ -141,13 +170,15 @@ public class NuevaActividad extends Activity{
 		String c = competencias.getEditableText().toString();
 		String d = descripcion.getEditableText().toString();
 		String e = evaluacion.getEditableText().toString();
+		String des = destinatario.getEditableText().toString();
+		String apk = apks.getSelectedItem().toString();
 		String img = dimg;
 		String vid = dvid;
 		String aud = daud;
 
 		abrirBasedatos();
 		
-		boolean resultado = insertarActividad(n,c,d,e,img,vid,aud);
+		boolean resultado = insertarActividad(n,c,d,e,des,apk,img,vid,aud);
 	        if(resultado) {
 	          Toast.makeText(getApplicationContext(),"Actividad Añadida Correctamente", Toast.LENGTH_LONG).show();
 	          this.finish();
@@ -309,4 +340,5 @@ public class NuevaActividad extends Activity{
 			}
 		}
 	}
+
 }

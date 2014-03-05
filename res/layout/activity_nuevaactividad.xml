@@ -21,8 +21,7 @@
 	        android:hint="@string/nombreNuevaActividad"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
-	 	    android:layout_height="wrap_content"/>
-	 	
+	 	    android:layout_height="wrap_content"/>	 	
 	 	<EditText 	    
 	 	    android:background="@drawable/cajas"
 	 	    android:layout_gravity="center"
@@ -32,8 +31,7 @@
 	        android:hint="@string/competenciasNuevaActividad"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
-	 	    android:layout_height="wrap_content"/>
- 	
+	 	    android:layout_height="wrap_content"/> 	
 	 	<EditText
 	 	    android:background="@drawable/cajas"
 	 	    android:layout_gravity="center"
@@ -53,6 +51,25 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/evaluacionNuevaActividad"/>
+	 	<TextView 
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+	 	<Spinner 
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"
+	 	    android:layout_gravity="center"
+	 	    android:gravity="center"
+	 	    android:id="@+id/spinner"/>
+	 	<TextView 
+	 	    android:layout_width="wrap_content"
+	 	    android:layout_height="wrap_content"/>
+	 	<EditText 	    
+	 	    android:background="@drawable/cajas"
+	 	    android:layout_gravity="center"
+	 	    android:id="@+id/destino"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:hint="Ingrese Destinatario"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>

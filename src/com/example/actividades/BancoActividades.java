@@ -31,15 +31,18 @@ public class BancoActividades extends Activity implements OnClickListener{
 	//static String nameDB="apli";
 	private static final String crearAct="create table if not exists Actividad(id_actividad integer primary key autoincrement," +
 			"nameAct text," +
+			"compAct text," +
 			"descAct text," +
+			"evalAct text," +	
+			"destAct text," +
+			"pathApk text," +
 			"pathI text," +
 			"pathV text," +
 			"pathA text)";
 
 	ScrollView general;
 	LinearLayout capa1;
-	TextView box,t;
-	//Button []b = new Button[10];
+	TextView box,t;	
 	Button b;
 	ArrayList<Button> botones = new ArrayList<Button>();
 	
@@ -47,6 +50,8 @@ public class BancoActividades extends Activity implements OnClickListener{
 	ArrayList<String> competencias=new ArrayList<String>();
 	ArrayList<String> descripcion=new ArrayList<String>();
 	ArrayList<String> evaluacion=new ArrayList<String>();
+	ArrayList<String> destinatario=new ArrayList<String>();
+	ArrayList<String> pathApk=new ArrayList<String>();
 	ArrayList<String> pathI=new ArrayList<String>();
 	ArrayList<String> pathV=new ArrayList<String>();
 	ArrayList<String> pathA=new ArrayList<String>();
@@ -100,9 +105,11 @@ public class BancoActividades extends Activity implements OnClickListener{
 			competencias.add(consultor.getString(2));
 			descripcion.add(consultor.getString(3));
 			evaluacion.add(consultor.getString(4));
-			pathI.add(consultor.getString(5));
-			pathV.add(consultor.getString(6));
-			pathA.add(consultor.getString(7));
+			destinatario.add(consultor.getString(5));
+			pathApk.add(consultor.getString(6));
+			pathI.add(consultor.getString(7));
+			pathV.add(consultor.getString(8));
+			pathA.add(consultor.getString(9));
 			b = new Button(this);
 			b.setText(consultor.getString(1));
 			b.setId(conta);
@@ -133,6 +140,8 @@ public class BancoActividades extends Activity implements OnClickListener{
 		act.putExtra("comp",competencias.get(id));
 		act.putExtra("desc",descripcion.get(id));
 		act.putExtra("eval",evaluacion.get(id));
+		act.putExtra("dest",destinatario.get(id));
+		act.putExtra("papk",pathApk.get(id));
 		act.putExtra("img",pathI.get(id));
 		act.putExtra("vid",pathV.get(id));
 		act.putExtra("aud",pathA.get(id));
