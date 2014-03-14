@@ -46,6 +46,7 @@
         <activity            
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"            
             android:name="com.example.actividades.NuevaActividad"            
             android:label="Nueva Actividad" >
         </activity>
@@ -58,6 +59,7 @@
         <activity            
             android:permission="android.permission.READ_EXTERNAL_STORAGE"
             android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize|adjustPan"
             android:name="com.example.actividades.Update"            
             android:label="Actualizar Actividad" >
         </activity>
