@@ -28,6 +28,11 @@
         </activity>
         <activity
             android:configChanges="orientation|screenSize"
+            android:name="com.example.actividades.Configurar"
+            android:label="Configuración" >
+        </activity>
+        <activity
+            android:configChanges="orientation|screenSize"
             android:name="com.example.actividades.LoginAdmin"
             android:label="Acceso" >
         </activity>

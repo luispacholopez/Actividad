@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class EliminarActividad extends Activity implements OnClickListener{
-	
+	String ruta ="";
 	SQLiteDatabase db;
 	String fuente = "dataapp/";
 	String DATABASE_PATH = "/mnt/sdcard/"+fuente;	
@@ -50,7 +51,9 @@ public class EliminarActividad extends Activity implements OnClickListener{
 		
 		capa1 = new LinearLayout(this);
 		capa1.setOrientation(LinearLayout.VERTICAL);
-		
+		Intent e = new Intent();
+		e = this.getIntent();
+		ruta = e.getStringExtra("ruta");
 		abrirBasedatos();
 		botones();
 		general.addView(capa1);
@@ -60,7 +63,7 @@ public class EliminarActividad extends Activity implements OnClickListener{
 	private void abrirBasedatos()  {   
 	    try 
 	    {   
-	    	db = openOrCreateDatabase(DATABASE_PATH+"DB", MODE_PRIVATE, null);	    	
+	    	db = openOrCreateDatabase(ruta+"DB", MODE_PRIVATE, null);	    	
 	    	db.execSQL(crearAct);
 	    }    
 	    catch (Exception e)
@@ -102,15 +105,15 @@ public class EliminarActividad extends Activity implements OnClickListener{
 		String nombre = nombres.get(id).toString();
 		
 		if (!(pathI.get(id).isEmpty())){
-			File file = new File(pathI.get(id));
+			File file = new File(ruta+pathI.get(id));
 			file.delete();				
 		}
 		if (!(pathV.get(id).isEmpty())){
-			File file = new File(pathV.get(id));
+			File file = new File(ruta+pathV.get(id));
 			file.delete();				
 		}
 		if (!(pathA.get(id).isEmpty())){
-			File file = new File(pathA.get(id));
+			File file = new File(ruta+pathA.get(id));
 			file.delete();				
 		}			
 		

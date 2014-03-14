@@ -18,11 +18,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 @SuppressLint("NewApi")
 public class Estudiante extends Activity {
-	
+	String ruta="";
 	TextView N,C,D,E,t;
 	ImageView I;
 	VideoView V;
@@ -52,6 +53,7 @@ public class Estudiante extends Activity {
 		installApk = (Button) this.findViewById(R.id.apk);
 		
 		Intent e= this.getIntent();
+		ruta=e.getStringExtra("ruta");
 		N.setText(e.getStringExtra("name"));		
 		C.setText(textoComp+e.getStringExtra("comp"));
 		D.setText(e.getStringExtra("desc"));
@@ -59,20 +61,20 @@ public class Estudiante extends Activity {
 		destino = e.getStringExtra("dest");
 		apl = e.getStringExtra("papk");
 		
-		installApk.setText("Instalar "+apl);
-		I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
+		installApk.setText("Instalar "+apl);		
+		I.setImageBitmap(BitmapFactory.decodeFile(ruta+e.getStringExtra("img")));
 		
-		if (e.getStringExtra("vid").isEmpty()){			
+		if ((e.getStringExtra("vid")).isEmpty()){			
 			V.setVisibility(View.INVISIBLE);
 			//t.setText("vacio");
 		}
 		else{
-			path = Uri.parse(e.getStringExtra("vid"));
+			path = Uri.parse(ruta+e.getStringExtra("vid"));
 			V.setVideoURI(path);
 			V.setMediaController(new MediaController(this));
 		}		
 			
-		if (e.getStringExtra("aud").isEmpty()){
+		if ((e.getStringExtra("aud")).isEmpty()){
 			playA.setVisibility(View.INVISIBLE);
 			stopA.setVisibility(View.INVISIBLE);			
 			playA.setEnabled(false);
@@ -84,7 +86,7 @@ public class Estudiante extends Activity {
 				stopA.setAlpha(100);
 				playA.setEnabled(true);
 				stopA.setEnabled(true);
-				A.setDataSource(e.getStringExtra("aud"));
+				A.setDataSource(ruta+e.getStringExtra("aud"));
 			} catch (IllegalArgumentException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -114,7 +116,7 @@ public class Estudiante extends Activity {
 	public void install(View v){		
 		//t.setText(apl+" uno");
 		Intent inte = new Intent(Intent.ACTION_VIEW);
-		inte.setDataAndType(Uri.fromFile(new File("/mnt/sdcard/dataapp/apps/"+apl)), "application/vnd.android.package-archive");
+		inte.setDataAndType(Uri.fromFile(new File(ruta+"apps/"+apl)), "application/vnd.android.package-archive");
 		inte.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(inte);
 		

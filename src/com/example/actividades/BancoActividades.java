@@ -26,6 +26,7 @@ import android.widget.VideoView;
 @SuppressLint("NewApi")
 public class BancoActividades extends Activity implements OnClickListener{
 	SQLiteDatabase db;
+	String ruta="";
 	//static String nameDB="apli";
 	//String DATABASE_PATH = "mnt/extsd/dataapp";
 	//static String nameDB="apli";
@@ -69,6 +70,7 @@ public class BancoActividades extends Activity implements OnClickListener{
 		capa1.addView(box);
 		
 		Intent bAct = this.getIntent();
+		ruta=bAct.getStringExtra("ruta");
 		
 		abrirBasedatos();
 		consulta();		
@@ -80,7 +82,7 @@ public class BancoActividades extends Activity implements OnClickListener{
 		
 	    try
 	    {		    	
-	      db = openOrCreateDatabase("/mnt/sdcard/dataapp/"+"DB", MODE_WORLD_WRITEABLE, null);	      
+	      db = openOrCreateDatabase(ruta+"DB", MODE_WORLD_WRITEABLE, null);	      
 	      if (db == null){
 	    	  Toast.makeText(getApplicationContext(),"Error Lectura", Toast.LENGTH_LONG).show();
 	      }
@@ -108,7 +110,7 @@ public class BancoActividades extends Activity implements OnClickListener{
 			destinatario.add(consultor.getString(5));
 			pathApk.add(consultor.getString(6));
 			pathI.add(consultor.getString(7));
-			pathV.add(consultor.getString(8));
+			pathV.add(consultor.getString(8));			
 			pathA.add(consultor.getString(9));
 			b = new Button(this);
 			b.setText(consultor.getString(1));
@@ -136,6 +138,7 @@ public class BancoActividades extends Activity implements OnClickListener{
 	public void saltar(int id){		
 		Intent act;
 		act = new Intent(this,Estudiante.class);
+		act.putExtra("ruta", ruta);
 		act.putExtra("name",nombres.get(id));
 		act.putExtra("comp",competencias.get(id));
 		act.putExtra("desc",descripcion.get(id));

@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -28,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Update extends Activity{
-
+	String ruta="";
 	SQLiteDatabase db;
 	String fuente = "dataapp/";
 	String DATABASE_PATH = "/mnt/sdcard/"+fuente;	
@@ -51,11 +52,13 @@ public class Update extends Activity{
 	boolean flagi=false,flagv=false,flaga=false;
 	String oimg="",ovid="",oaud="";
 	String dimg="",dvid="",daud="";
+	String rimg="",rvid="",raud="";
 	
 	Spinner apks;
 	ArrayList<String> archivos= new ArrayList<String>();
 	ArrayAdapter<String> adapter;
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -80,6 +83,7 @@ public class Update extends Activity{
 		act = (Button) this.findViewById(R.id.Actualizar);
 		
 		Intent upd = this.getIntent();
+		ruta=upd.getStringExtra("ruta");
 		
 		N.setText(upd.getStringExtra("name"));
 		C.setText(upd.getStringExtra("comp"));
@@ -88,12 +92,32 @@ public class Update extends Activity{
 		Dt.setText(upd.getStringExtra("dest"));
 		
 		
-		I.setText(upd.getStringExtra("img"));
-		dimg=upd.getStringExtra("img");
-		V.setText(upd.getStringExtra("vid"));
-		dvid=upd.getStringExtra("vid");
-		A.setText(upd.getStringExtra("aud"));
-		daud=upd.getStringExtra("aud");	
+		if ((upd.getStringExtra("img")).isEmpty()){
+			I.setText("");
+			rimg="";
+		}
+		else{
+			I.setText(ruta+upd.getStringExtra("img"));
+			rimg=upd.getStringExtra("img");
+		}
+		
+		if ((upd.getStringExtra("vid")).isEmpty()){
+			V.setText("");
+			rvid="";
+		}
+		else{
+			V.setText(ruta+upd.getStringExtra("vid"));
+			rvid=upd.getStringExtra("vid");
+		}
+		
+		if ((upd.getStringExtra("aud")).isEmpty()){
+			A.setText("");
+			raud="";
+		}
+		else{
+			A.setText(ruta+upd.getStringExtra("aud"));
+			raud=upd.getStringExtra("aud");
+		}
 		
 		archivos.add("");
 		leerDir();
@@ -107,7 +131,7 @@ public class Update extends Activity{
 	  {   
 	    try 
 	    {   
-	    	db = openOrCreateDatabase(DATABASE_PATH+"DB", MODE_PRIVATE, null);	    	
+	    	db = openOrCreateDatabase(ruta+"DB", MODE_PRIVATE, null);	    	
 	    	db.execSQL(crearAct);
 	    	Log.i("base", "Si");      
 	    }    
@@ -135,7 +159,7 @@ public class Update extends Activity{
 	}
 	
 	public void leerDir(){		
-		File f = new File(path+"apps");
+		File f = new File(ruta+"apps");
 		File[] files = f.listFiles();		
 		for (int i = 0; i < files.length; i++){
 			File file = files[i];			
@@ -144,14 +168,6 @@ public class Update extends Activity{
 			}
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
 	
 	public void actualizar (View v){
 		String n = N.getEditableText().toString();		
@@ -160,9 +176,9 @@ public class Update extends Activity{
 		String e = E.getEditableText().toString();
 		String dt = Dt.getEditableText().toString();
 		String a = apks.getSelectedItem().toString();
-		String img = dimg;
-		String vid = dvid;
-		String aud = daud;
+		String img = rimg;
+		String vid = rvid;
+		String aud = raud;
 
 		abrirBasedatos();		
 		cargar(n,c,d,e,dt,a,img,vid,aud);
@@ -264,7 +280,9 @@ public class Update extends Activity{
 					data.getType();
 					oimg =getRealPath(this, imageuri);					
 					//oimg = imageuri.getPath();
-					dimg = path+"img/"+N.getText().toString()+".jpg";				
+					//dimg = path+"img/"+N.getText().toString()+".jpg";
+					rimg = "img/"+N.getText().toString()+".jpg";
+					dimg = ruta+rimg;
 					//addimg.setText(oimg+dimg);
 					try{			
 						sourceLocation = new File (oimg);
@@ -296,7 +314,9 @@ public class Update extends Activity{
 					data.getType();
 					ovid =getRealPathv(this, videouri);
 					//ovid = videouri.getPath();
-					dvid = path+"vid/"+N.getText().toString()+".mp4";				
+//					dvid = path+"vid/"+N.getText().toString()+".mp4";				
+					rvid = "vid/"+N.getText().toString()+".mp4";
+					dvid = ruta+rvid;
 					try{			
 						sourceLocation = new File (ovid);
 						targetLocation = new File (dvid);
@@ -327,7 +347,9 @@ public class Update extends Activity{
 					data.getType();
 					oaud =getRealPatha(this, audiouri);
 					//oaud = audiouri.getPath();
-					daud = path+"audio/"+N.getText().toString()+".mp3";				
+//					daud = path+"audio/"+N.getText().toString()+".mp3";				
+					raud ="audio/"+N.getText().toString()+".mp3";
+					daud = ruta+raud;
 					try{			
 						sourceLocation = new File (oaud);
 						targetLocation = new File (daud);

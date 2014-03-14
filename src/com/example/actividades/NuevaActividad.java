@@ -34,6 +34,7 @@ public class NuevaActividad extends Activity{
 	
 	SQLiteDatabase db;
 	String fuente = "dataapp/";
+	String ruta="";//............./dataapp/
 	String DATABASE_PATH = "/mnt/sdcard/"+fuente;	
 	String path="/mnt/sdcard/"+fuente;
 
@@ -45,6 +46,7 @@ public class NuevaActividad extends Activity{
 	boolean flagi=false, flagv=false,flaga=false;	
 	String oimg="",ovid="",oaud="";
 	String dimg="",dvid="",daud="";
+	String rimg="",rvid="",raud="";
 	
 	ArrayList<String> archivos= new ArrayList<String>();
 	ArrayAdapter<String> adapter;	
@@ -84,6 +86,8 @@ public class NuevaActividad extends Activity{
 		
 		ag = (Button) this.findViewById(R.id.Agregar);		
 		Intent newA = this.getIntent();
+		ruta = newA.getStringExtra("ruta");
+		Toast.makeText(getApplicationContext(),""+ruta, Toast.LENGTH_LONG).show();
 		archivos.add("");
 		leerDir();
 		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,archivos);
@@ -96,7 +100,7 @@ public class NuevaActividad extends Activity{
 	  {   
 	    try 
 	    {   
-	    	db = openOrCreateDatabase(DATABASE_PATH+"DB", MODE_PRIVATE, null);	    	
+	    	db = openOrCreateDatabase(ruta+"DB", MODE_PRIVATE, null);	    	
 	    	db.execSQL(crearAct);
 	    	Log.i("base", "Si");      
 	    }    
@@ -122,7 +126,7 @@ public class NuevaActividad extends Activity{
 	  }	
 
 	public void leerDir(){		
-		File f = new File(path+"apps");
+		File f = new File(ruta+"apps");
 		File[] files = f.listFiles();		
 		for (int i = 0; i < files.length; i++){
 			File file = files[i];			
@@ -172,9 +176,9 @@ public class NuevaActividad extends Activity{
 		String e = evaluacion.getEditableText().toString();
 		String des = destinatario.getEditableText().toString();
 		String apk = apks.getSelectedItem().toString();
-		String img = dimg;
-		String vid = dvid;
-		String aud = daud;
+		String img = rimg;
+		String vid = rvid;
+		String aud = raud;
 
 		abrirBasedatos();
 		
@@ -250,7 +254,9 @@ public class NuevaActividad extends Activity{
 					data.getType();
 					oimg =getRealPath(this, imageuri);					
 					//oimg = imageuri.getPath();
-					dimg = path+"img/"+nombre.getText().toString()+".jpg";				
+					//dimg = path+"img/"+nombre.getText().toString()+".jpg";
+					rimg ="img/"+nombre.getText().toString()+".jpg";
+					dimg = ruta+rimg;
 					//addimg.setText(oimg+dimg);
 					try{			
 						sourceLocation = new File (oimg);
@@ -282,7 +288,9 @@ public class NuevaActividad extends Activity{
 					data.getType();
 					ovid =getRealPathv(this, videouri);
 					//ovid = videouri.getPath();
-					dvid = path+"vid/"+nombre.getText().toString()+".mp4";				
+//					dvid = path+"vid/"+nombre.getText().toString()+".mp4";				
+					rvid = "vid/"+nombre.getText().toString()+".mp4";
+					dvid = ruta+rvid;
 					try{			
 						sourceLocation = new File (ovid);
 						targetLocation = new File (dvid);
@@ -313,7 +321,9 @@ public class NuevaActividad extends Activity{
 					data.getType();
 					oaud =getRealPatha(this, audiouri);
 					//oaud = audiouri.getPath();
-					daud = path+"audio/"+nombre.getText().toString()+".mp3";				
+//					daud = path+"audio/"+nombre.getText().toString()+".mp3";
+					raud = "audio/"+nombre.getText().toString()+".mp3";
+					daud = ruta+raud;
 					try{			
 						sourceLocation = new File (oaud);
 						targetLocation = new File (daud);

@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	Button Admin, Estudiante;
+	Button Admin, Estudiante, Config;
+	String ruta="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,14 +20,21 @@ public class MainActivity extends Activity {
 	
 	public void onAdministrador (View v) {
 		Intent logA; 
-    	logA = new Intent(this,LoginAdmin.class);    	
+    	logA = new Intent(this,LoginAdmin.class);
+    	logA.putExtra("ruta", ruta);
     	this.startActivityForResult(logA, 0);
 	}
 	
 	public void onEstudiante (View v){
 		Intent BancoAct; 
-		BancoAct = new Intent(this,BancoActividades.class);    	
+		BancoAct = new Intent(this,BancoActividades.class);
+		BancoAct.putExtra("ruta", ruta);
     	this.startActivityForResult(BancoAct, 0);
+	}
+	public void onConfigurar (View v){
+		Intent config; 
+		config = new Intent(this,Configurar.class);    	
+    	this.startActivityForResult(config, 0);
 	}
 
 	@Override
@@ -39,7 +47,14 @@ public class MainActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		String x = "si";
+		try{
+			ruta = data.getStringExtra("ruta");
+			Toast.makeText(getApplicationContext(),"Configuración Correcta\n"+ruta, Toast.LENGTH_LONG).show();
+		}
+		catch (Exception e){
+			ruta = ruta;
+		}
+		
 	}
 
 }

@@ -64,7 +64,19 @@
         android:text="Estudiante"
         android:onClick="onEstudiante"        
         />
-        
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:textColor="@color/gris"
+        android:layout_gravity="center"
+        android:background="@drawable/botones"
+        android:id="@+id/bConfigurar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configurar"
+        android:onClick="onConfigurar"        
+        />
         
 
 </LinearLayout>

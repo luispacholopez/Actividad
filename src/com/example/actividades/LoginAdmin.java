@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginAdmin extends Activity {
+	String ruta="";
 	EditText user,pass;
 	Button acceso;
 	SQLiteDatabase db;
@@ -21,6 +22,8 @@ public class LoginAdmin extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_loginadmin);
 		Intent logA = this.getIntent();
+		ruta = logA.getStringExtra("ruta");
+		Toast.makeText(getApplicationContext(),""+ruta, Toast.LENGTH_LONG).show();
 		user = (EditText) this.findViewById(R.id.eUsuario);
 		user.setText("");
 		pass = (EditText) this.findViewById(R.id.ePassword);
@@ -43,7 +46,8 @@ public class LoginAdmin extends Activity {
 		    	aviso = Toast.makeText(this,"Bienvenido",1000);			    	
 		    	aviso.show();
 				Intent newA; 
-		    	newA = new Intent(this,Administrador.class);    	
+		    	newA = new Intent(this,Administrador.class);
+		    	newA.putExtra("ruta", ruta);
 		    	this.startActivityForResult(newA, 0);
 			}			
 			else {

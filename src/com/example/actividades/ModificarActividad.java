@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 public class ModificarActividad extends Activity implements OnClickListener{
-	
+	String ruta="";
 	SQLiteDatabase db;
 	String fuente = "dataapp/";
 	String DATABASE_PATH = "/mnt/sdcard/"+fuente;	
@@ -51,6 +51,9 @@ public class ModificarActividad extends Activity implements OnClickListener{
 		general = new ScrollView(this);		
 		capa1 = new LinearLayout(this);
 		capa1.setOrientation(LinearLayout.VERTICAL);
+		Intent e = new Intent();
+		e = this.getIntent();
+		ruta=e.getStringExtra("ruta");
 		abrirBasedatos();
 		botones();
 		general.addView(capa1);
@@ -60,7 +63,7 @@ public class ModificarActividad extends Activity implements OnClickListener{
 	  {   
 	    try 
 	    {   
-	    	db = openOrCreateDatabase(DATABASE_PATH+"DB", MODE_PRIVATE, null);	    	
+	    	db = openOrCreateDatabase(ruta+"DB", MODE_PRIVATE, null);	    	
 	    	db.execSQL(crearAct);
 	    	Log.i("base", "Si");      
 	    }    
@@ -102,6 +105,7 @@ public class ModificarActividad extends Activity implements OnClickListener{
 		
 		Intent upd;
 		upd = new Intent(this,Update.class);
+		upd.putExtra("ruta", ruta);
 		upd.putExtra("name", nombres.get(id));
 		upd.putExtra("comp",competencias.get(id));
 		upd.putExtra("desc",descripcion.get(id));
