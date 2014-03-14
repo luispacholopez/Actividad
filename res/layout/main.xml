@@ -4,19 +4,24 @@
 			  android:layout_width="fill_parent"
 			  android:layout_height="fill_parent"
 			  android:orientation="vertical"
+			  android:layout_gravity="center"
+			  android:gravity="center"
   		      xmlns:android="http://schemas.android.com/apk/res/android">
 	<LinearLayout android:id="@+id/LinearLayout02"
 				  android:layout_width="wrap_content" 
 				  android:layout_height="wrap_content"
  				  android:orientation="horizontal">
 		<EditText android:layout_width="wrap_content"
-				  android:layout_height="wrap_content" 
-				  android:width="170dip" 
+		    	android:background="@drawable/cajas"
+				  android:layout_height="wrap_content"
 				  android:hint="Destinatario"
 				  android:inputType="textEmailAddress"				  
 				  android:id="@+id/etEmail">
-		</EditText>
+		</EditText>		
 	</LinearLayout>
+	<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
 	<LinearLayout android:id="@+id/LinearLayout03"
  				  android:layout_width="wrap_content" 
  				  android:layout_height="wrap_content"
@@ -24,19 +29,27 @@
 		
 		<EditText android:layout_width="wrap_content"
 				  android:layout_height="wrap_content" 
-				  android:width="170dip" 
+				  android:background="@drawable/cajas"
 				  android:hint="Asunto"
 				  android:id="@+id/etSubject">
-		</EditText>
+		</EditText>		
 	</LinearLayout>
+	<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
 	<LinearLayout android:id="@+id/LinearLayout04"
  				  android:layout_width="wrap_content" 
  				  android:layout_height="wrap_content"
+ 				  android:layout_gravity="center"
+ 				  android:gravity="center"
  				  android:orientation="horizontal">
 		
 		<EditText android:layout_width="wrap_content"
- 			  android:layout_height="wrap_content" 
- 			  android:lines="4" 
+ 			  android:layout_height="wrap_content"
+ 			  android:layout_gravity="center"
+ 			  android:gravity="center"
+ 			   android:background="@drawable/cajas"
+ 			  android:lines="5" 
  			  android:hint="Mensaje"
  			  android:width="300dip"
 			  android:id="@+id/etBody">
@@ -46,7 +59,8 @@
 	</LinearLayout>
 		<Button android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
-			android:textColor="@color/azul"
+			android:textColor="@color/gris"
+			android:background="@drawable/botones"
 			android:id="@+id/btnAdj"
 			android:text="Adjuntar"			
 			android:onClick="adjuntar"
@@ -54,12 +68,14 @@
 	</Button>
 	<TextView android:layout_width="wrap_content"
  			  android:layout_height="wrap_content"
- 			  android:width="300dip"
+ 			  android:layout_gravity="center"
+ 			  android:gravity="center"
 			  android:id="@+id/agregados">
 		</TextView>
 	<Button android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"
-			android:textColor="@color/azul"
+			android:textColor="@color/gris"
+			android:background="@drawable/botones"
 			android:id="@+id/btnSend"
 			android:text="Enviar"			
 			android:onClick="enviar"
