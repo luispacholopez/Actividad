@@ -8,12 +8,15 @@
     android:orientation="vertical">   
         <TextView            
             android:textStyle="bold"
-	        android:textColor="@color/azul"
-	        android:gravity="center"
+	        android:textColor="@color/azul"	        
 	        android:textSize="60px"
             android:id="@+id/nombreact" 
-            android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"/>
+            android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
         
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +26,11 @@
             android:background="@drawable/cajas"            
             android:id="@+id/comppact" 
             android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
         
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +40,11 @@
             android:background="@drawable/cajas"            
             android:id="@+id/descripact" 
             android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
         
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +54,11 @@
             android:background="@drawable/cajas"            
             android:id="@+id/evalpact" 
             android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"/>
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
         
         <TextView
             android:layout_width="wrap_content"
@@ -54,8 +69,7 @@
                 android:textColor="@color/gris"
 	            android:id="@+id/apk" 
 	            android:layout_width="fill_parent"
-	    		android:layout_height="wrap_content"    	
-	    		android:text="Instalar Apk"
+	    		android:layout_height="wrap_content"
 	    		android:onClick="install"/>
         <TextView
             android:layout_width="wrap_content"

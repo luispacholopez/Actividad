@@ -59,7 +59,7 @@ public class Estudiante extends Activity {
 		destino = e.getStringExtra("dest");
 		apl = e.getStringExtra("papk");
 		
-		
+		installApk.setText("Instalar "+apl);
 		I.setImageBitmap(BitmapFactory.decodeFile(e.getStringExtra("img")));
 		
 		if (e.getStringExtra("vid").isEmpty()){			

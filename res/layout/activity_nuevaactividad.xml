@@ -13,43 +13,55 @@
 	    android:orientation="vertical" >
     
 	 	<EditText
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/nameAct"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"
 	        android:hint="@string/nombreNuevaActividad"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>	 	
 	 	<EditText 	    
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/compAct"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"
 	        android:hint="@string/competenciasNuevaActividad"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/> 	
 	 	<EditText
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/descAct"
 	 	    android:lines="5"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"
 	        android:hint="@string/descripcionNuevaActividad"	        
 	        android:inputType="textMultiLine"/>
 	    <TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
 	 	<EditText 	    
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/evalAct"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"
 	        android:hint="@string/evaluacionNuevaActividad"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
@@ -64,12 +76,15 @@
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
 	 	<EditText 	    
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/destino"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:hint="Ingrese Destinatario"/>
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"
+	        android:hint="Ingrese su Correo Electrónico"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>

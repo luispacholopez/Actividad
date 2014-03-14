@@ -13,42 +13,54 @@
 	    android:orientation="vertical" >
     
 	 	<EditText
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/nombreActividad"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>        
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>        
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
 	 	
 	 	<EditText 	    
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/competenciasActividad"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
  	
 	 	<EditText
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/descripcionActividad"
 	 	    android:lines="5"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"	        	        
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"
 	        android:inputType="textMultiLine"/>
 	    <TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
 	 	<EditText 	    
 	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
 	 	    android:id="@+id/evaluacionAct"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
@@ -62,11 +74,14 @@
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
 	 	<EditText 	    
-	 	    android:background="@drawable/cajas"
-	 	    android:layout_gravity="center"
+	 	    android:background="@drawable/cajas"	 	    
 	 	    android:id="@+id/destinoAct"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"/>
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25px"
+	        android:layout_marginRight="25px"
+	        android:layout_gravity="center"
+	 	    android:gravity="center"/>
 	 	<TextView 
 	 	    android:layout_width="wrap_content"
 	 	    android:layout_height="wrap_content"/>
